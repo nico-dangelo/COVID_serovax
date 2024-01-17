@@ -1,5 +1,6 @@
 
 
+
 source("9_mixing_matrix_gmix.R")
 ## Model flows
 ## The subscripts denote the number of times someone as been exposed through either infection or vaccination
@@ -269,7 +270,7 @@ COVID_sero_vax <- function(t, start, params) {
     
     ### imunne escape factor for those with either prior exposure or prior vaccination
     #if (t <= 100){
-    #imm_esc_factor <- imm_esc_factor_omi
+    ##imm_esc_factor <- imm_esc_factor_omi
     #} else {
     #  imm_esc_factor <- imm_esc_factor_newvar
     #}
@@ -285,149 +286,118 @@ COVID_sero_vax <- function(t, start, params) {
     
     foi_cu_0v0 = beta_c * ((
       CM[4, 4] * (
-        Icu1v0 + Icu2v0 + Icu3v0 + Icu1v1 + Icu2v1 + Icu3v1 + Icu1v2 + Icu2v2 +
-          Icu3v2 + Icu1v3 + Icu2v3 + Icu3v3 + alpha * (
-            Acu1v0 + Acu2v0 + Acu3v0 + Acu1v1 + Acu2v1 + Acu3v1 + Acu1v2 + Acu2v2 +
-              Acu3v2 + Acu1v3 + Acu2v3 + Acu3v3
-          )
+        Icu1v0 + Icu2v0 + Icu1v1 + Icu2v1  + Icu1v2 + Icu2v2++alpha * (Acu1v0 + Acu2v0  + Acu1v1 + Acu2v1  + Acu1v2 + Acu2v2)
       ) / Nchildu
     ) +
       (
         CM[5, 4] * (
-          Iau1v0 + Iau2v0 + Iau3v0 + Iau1v1 + Iau2v1 + Iau3v1 + Iau1v2 + Iau2v2 +
-            Iau3v2 + Iau1v3 + Iau2v3 + Iau3v3 + alpha * (
-              Aau1v0 + Aau2v0 + Aau3v0 + Aau1v1 + Aau2v1 + Aau3v1 + Aau1v2 + Aau2v2 +
-                Aau3v2 + Aau1v3 + Aau2v3 + Aau3v3
-            )
+          Iau1v0 + Iau2v0  + Iau1v1 + Iau2v1 + Iau1v2 + Iau2v2++alpha * (Aau1v0 + Aau2v0  + Aau1v1 + Aau2v1  + Aau1v2 + Aau2v2)
         ) / Nadultu
       ) +
       (
         CM[6, 4] * (
-          Ieu1v0 + Ieu2v0 + Ieu3v0 + Ieu1v1 + Ieu2v1 + Ieu3v1 + Ieu1v2 + Ieu2v2 +
-            Ieu3v2 + Ieu1v3 + Ieu2v3 + Ieu3v3 + alpha * (
-              Aeu1v0 + Aeu2v0 + Aeu3v0 + Aeu1v1 + Aeu2v1 + Aeu3v1 + Aeu1v2 + Aeu2v2 +
-                Aeu3v2 + Aeu1v3 + Aeu2v3 + Aeu3v3
-            )
+          Ieu1v0 + Ieu2v0  + Ieu1v1 + Ieu2v1 + Ieu3v1 + Ieu1v2 + Ieu2v2++alpha * (Aeu1v0 + Aeu2v0  + Aeu1v1 + Aeu2v1  + Aeu1v2 + Aeu2v2)
         ) / Noldu
       ))
     
     foi_au_0v0 = beta_a * ((
       CM[4, 5] * (
-        Icu1v0 + Icu2v0 + Icu3v0 + Icu1v1 + Icu2v1 + Icu3v1 + Icu1v2 + Icu2v2 +
-          Icu3v2 + Icu1v3 + Icu2v3 + Icu3v3 + alpha * (
-            Acu1v0 + Acu2v0 + Acu3v0 + Acu1v1 + Acu2v1 + Acu3v1 + Acu1v2 + Acu2v2 +
-              Acu3v2 + Acu1v3 + Acu2v3 + Acu3v3
-          )
+        Icu1v0 + Icu2v0 + Icu3v0 + Icu1v1 + Icu2v1 + Icu1v2 + Icu2v2 + alpha * (Acu1v0 + Acu2v0  + Acu1v1 + Acu2v1  + Acu1v2 + Acu2v2)
       ) / Nchildu
     ) +
       (
         CM[5, 5] * (
-          Iau1v0 + Iau2v0 + Iau3v0 + Iau1v1 + Iau2v1 + Iau3v1 + Iau1v2 + Iau2v2 +
-            Iau3v2 + Iau1v3 + Iau2v3 + Iau3v3 + alpha * (
-              Aau1v0 + Aau2v0 + Aau3v0 + Aau1v1 + Aau2v1 + Aau3v1 + Aau1v2 + Aau2v2 +
-                Aau3v2 + Aau1v3 + Aau2v3 + Aau3v3
-            )
+          Iau1v0 + Iau2v0  + Iau1v1 + Iau2v1 + Iau1v2 + Iau2v2  + alpha * (Aau1v0 + Aau2v0++Aau1v1 + Aau2v1  + Aau1v2 + Aau2v2)
         ) / Nadultu
       ) +
       (
         CM[6, 5] * (
-          Ieu1v0 + Ieu2v0 + Ieu3v0 + Ieu1v1 + Ieu2v1 + Ieu3v1 + Ieu1v2 + Ieu2v2 +
-            Ieu3v2 + Ieu1v3 + Ieu2v3 + Ieu3v3 + alpha * (
-              Aeu1v0 + Aeu2v0 + Aeu3v0 + Aeu1v1 + Aeu2v1 + Aeu3v1 + Aeu1v2 + Aeu2v2 +
-                Aeu3v2 + Aeu1v3 + Aeu2v3 + Aeu3v3
-            )
+          Ieu1v0 + Ieu2v0  + Ieu1v1 + Ieu2v1  + Ieu1v2 + Ieu2v2  + alpha * (Aeu1v0 + Aeu2v0  + Aeu1v1 + Aeu2v1  + Aeu1v2 + Aeu2v2)
         ) / Noldu
       ))
     
     foi_eu_0v0 = beta_e *  ((
       CM[4, 6] * (
-        Icu1v0 + Icu2v0 + Icu3v0 + Icu1v1 + Icu2v1 + Icu3v1 + Icu1v2 + Icu2v2 +
-          Icu3v2 + Icu1v3 + Icu2v3 + Icu3v3 + alpha * (
-            Acu1v0 + Acu2v0 + Acu3v0 + Acu1v1 + Acu2v1 + Acu3v1 + Acu1v2 + Acu2v2 +
-              Acu3v2 + Acu1v3 + Acu2v3 + Acu3v3
-          )
+        Icu1v0 + Icu2v0  + Icu1v1 + Icu2v1  + Icu1v2 + Icu2v2  + alpha * (Acu1v0 + Acu2v0 + Acu1v1 + Acu2v1 + Acu1v2 + Acu2v2)
       ) / Nchildu
     ) +
       (
         CM[5, 6] * (
-          Iau1v0 + Iau2v0 + Iau3v0 + Iau1v1 + Iau2v1 + Iau3v1 + Iau1v2 + Iau2v2 +
-            Iau3v2 + Iau1v3 + Iau2v3 + Iau3v3 + alpha * (
-              Aau1v0 + Aau2v0 + Aau3v0 + Aau1v1 + Aau2v1 + Aau3v1 + Aau1v2 + Aau2v2 +
-                Aau3v2 + Aau1v3 + Aau2v3 + Aau3v3
-            )
+          Iau1v0 + Iau2v0  + Iau1v1 + Iau2v1  + Iau1v2 + Iau2v2 +
+            alpha * (Aau1v0 + Aau2v0 + Aau3v0 + Aau1v1 + Aau2v1  + Aau1v2 + Aau2v2)
         ) / Nadultu
       ) +
       (
         CM[6, 6] * (
-          Ieu1v0 + Ieu2v0 + Ieu3v0 + Ieu1v1 + Ieu2v1 + Ieu3v1 + Ieu1v2 + Ieu2v2 +
-            Ieu3v2 + Ieu1v3 + Ieu2v3 + Ieu3v3 + alpha * (
-              Aeu1v0 + Aeu2v0 + Aeu3v0 + Aeu1v1 + Aeu2v1 + Aeu3v1 + Aeu1v2 + Aeu2v2 +
-                Aeu3v2 + Aeu1v3 + Aeu2v3 + Aeu3v3
+          Ieu1v0 + Ieu2v0 + Ieu1v1 + Ieu2v1 + Ieu3v1 + Ieu1v2 + Ieu2v2 +
+             alpha * (
+              Aeu1v0 + Aeu2v0 + Aeu3v0 + Aeu1v1 + Aeu2v1 + Aeu1v2 + Aeu2v2 
+                
             )
         ) / Noldu
       ))
     
     
-    foi_cu_0v1 = foi_cu_0v0 * (1 - vei1) * imm_esc_factor
+    foi_cu_0v1 = foi_cu_0v0 * (1 - vei1) #* imm_esc_factor
     
-    foi_au_0v1 = foi_au_0v0 * (1 - vei1) * imm_esc_factor
+    foi_au_0v1 = foi_au_0v0 * (1 - vei1) #* imm_esc_factor
     
-    foi_eu_0v1 = foi_eu_0v0 * (1 - vei1) * imm_esc_factor
+    foi_eu_0v1 = foi_eu_0v0 * (1 - vei1) #* imm_esc_factor
     
     
-    foi_cu_0v2 = foi_cu_0v0 * (1 - vei2) * imm_esc_factor
+    foi_cu_0v2 = foi_cu_0v0 * (1 - vei2) #* imm_esc_factor
     
-    foi_au_0v2 = foi_au_0v0 * (1 - vei2) * imm_esc_factor
+    foi_au_0v2 = foi_au_0v0 * (1 - vei2) #* imm_esc_factor
     
-    foi_eu_0v2 = foi_eu_0v0 * (1 - vei2) * imm_esc_factor
+    foi_eu_0v2 = foi_eu_0v0 * (1 - vei2) #* imm_esc_factor
     
     
     
     ### After first exposure
     
-    foi_cu_1v0 = foi_cu_0v0 * red_inf_1 * imm_esc_factor * 0.7
+    foi_cu_1v0 = foi_cu_0v0 * red_inf_1 * #imm_esc_factor * 0.7
     
-    foi_au_1v0 = foi_au_0v0 * red_inf_1 * imm_esc_factor
+    foi_au_1v0 = foi_au_0v0 * red_inf_1 * #imm_esc_factor
     
-    foi_eu_1v0 = foi_eu_0v0 * red_inf_1 * imm_esc_factor
-    
-    
-    foi_cu_1v1 = foi_cu_0v1 * red_inf_1 * imm_esc_factor
-    
-    foi_au_1v1 = foi_au_0v1 * red_inf_1 * imm_esc_factor
-    
-    foi_eu_1v1 = foi_eu_0v1 * red_inf_1 * imm_esc_factor
+    foi_eu_1v0 = foi_eu_0v0 * red_inf_1 * #imm_esc_factor
     
     
-    foi_cu_1v2 = foi_cu_0v2 * red_inf_1 * imm_esc_factor
+    foi_cu_1v1 = foi_cu_0v1 * red_inf_1 * #imm_esc_factor
     
-    foi_au_1v2 = foi_au_0v2 * red_inf_1 * imm_esc_factor
+    foi_au_1v1 = foi_au_0v1 * red_inf_1 * #imm_esc_factor
     
-    foi_eu_1v2 = foi_eu_0v2 * red_inf_1 * imm_esc_factor
+    foi_eu_1v1 = foi_eu_0v1 * red_inf_1 * #imm_esc_factor
+    
+    
+    foi_cu_1v2 = foi_cu_0v2 * red_inf_1 * #imm_esc_factor
+    
+    foi_au_1v2 = foi_au_0v2 * red_inf_1 * #imm_esc_factor
+    
+    foi_eu_1v2 = foi_eu_0v2 * red_inf_1 * #imm_esc_factor
     
     
     
     ### After second exposure
     
-    foi_cu_2v0 = foi_cu_0v0 * red_inf_2 * imm_esc_factor * 0.7
+    foi_cu_2v0 = foi_cu_0v0 * red_inf_2 * #imm_esc_factor * 0.7
     
-    foi_au_2v0 = foi_au_0v0 * red_inf_2 * imm_esc_factor
+    foi_au_2v0 = foi_au_0v0 * red_inf_2 * #imm_esc_factor
     
-    foi_eu_2v0 = foi_eu_0v0 * red_inf_2 * imm_esc_factor
-    
-    
-    foi_cu_2v1 = foi_cu_0v1 * red_inf_2 * imm_esc_factor
-    
-    foi_au_2v1 = foi_au_0v1 * red_inf_2 * imm_esc_factor
-    
-    foi_eu_2v1 = foi_eu_0v1 * red_inf_2 * imm_esc_factor
+    foi_eu_2v0 = foi_eu_0v0 * red_inf_2 * #imm_esc_factor
     
     
-    foi_cu_2v2 = foi_cu_0v2 * red_inf_2 * imm_esc_factor
+    foi_cu_2v1 = foi_cu_0v1 * red_inf_2 * #imm_esc_factor
     
-    foi_au_2v2 = foi_au_0v2 * red_inf_2 * imm_esc_factor
+    foi_au_2v1 = foi_au_0v1 * red_inf_2 * #imm_esc_factor
     
-    foi_eu_2v2 = foi_eu_0v2 * red_inf_2 * imm_esc_factor
+    foi_eu_2v1 = foi_eu_0v1 * red_inf_2 * #imm_esc_factor
+    
+    
+    foi_cu_2v2 = foi_cu_0v2 * red_inf_2 * #imm_esc_factor
+    
+    foi_au_2v2 = foi_au_0v2 * red_inf_2 * #imm_esc_factor
+    
+    foi_eu_2v2 = foi_eu_0v2 * red_inf_2 * #imm_esc_factor
     
     ################################
     ##Unvaccinated and unexposed####
@@ -675,7 +645,7 @@ COVID_sero_vax <- function(t, start, params) {
     
     dRpcu1v1  =  pi * (1 - phi_cv1) * gamma_I * Icu1v1 + pi * gamma_A *
       Acu1v1 + pi * (1 - mu_c) * gamma_H * Hcu1v1 - kappa2 * Rpcu1v1 - omega_pc *
-      Rpcu1v1 - delta2_cu * Rpcu1v1 + delta1_cu * Rpcu1v0+ delta1_cu * Rncu1v0 * rho_v1 +
+      Rpcu1v1 - delta2_cu * Rpcu1v1 + delta1_cu * Rpcu1v0 + delta1_cu * Rncu1v0 * rho_v1 +
       delta1_cu * Spcu1v0 + delta1_cu * Sncu1v0 * rho_v1
     
     dRpau1v1  =  pi * (1 - phi_av1) * gamma_I * Iau1v1 + pi * gamma_A *
@@ -1187,7 +1157,7 @@ COVID_sero_vax <- function(t, start, params) {
       (rho_v2) * delta2_er * Vner0v1 - kappa2 * Vper0v2 - delta3_er * Vper0v2 - omegav_pe *
       Vper0v2
     dVpeu0v2 =  delta2_eu * Speu0v1 + (rho_v2) * delta2_eu * Sneu0v1 + delta2_eu *
-      Vpeu0v1 + 
+      Vpeu0v1 +
       (rho_v2) * delta2_eu * Vneu0v1 - kappa2 * Vpeu0v2 - delta3_eu * Vpeu0v2 - omegav_pe *
       Vpeu0v2
     
@@ -1207,7 +1177,7 @@ COVID_sero_vax <- function(t, start, params) {
     
     
     
-
+    
     
     
     
