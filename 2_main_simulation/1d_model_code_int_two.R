@@ -10,8 +10,8 @@ COVID_sero_vax <- function(t, start, params) {
     
     
     #Urban child
-    Ncu0v0 = sum(Scu0v0, Ecu1v0, Acu1v0, Icu1v0, Hcu1v0, Rpcu1v0, Rncu1v0) #Unvax and no prior exposure
-    Ncu1v0 = sum(Spcu1v0,
+    Ncu0v0 = sum(Scu0v0, Ecu1v0, Acu1v0, Icu1v0, Hcu1v0,  Rncu1v0) #Unvax and no prior exposure
+    Ncu1v0 = sum(
                  Sncu1v0,
                  Ecu2v0,
                  Acu2v0,
@@ -22,102 +22,99 @@ COVID_sero_vax <- function(t, start, params) {
     
     
     Ncu0v1 = sum(
-      Spcu0v1,
-      Vpcu0v1,
+      
+     
       Vncu0v1,
       Sncu0v1,
       Ecu1v1,
       Acu1v1,
       Icu1v1,
       Hcu1v1,
-      Rpcu1v1,
+      
       Rncu1v1
     ) #vax 1 dose and no prior exposure
-    Ncu1v1 = sum(Spcu1v1,
+    Ncu1v1 = sum(
                  Sncu1v1,
                  Ecu2v1,
                  Acu2v1,
                  Icu2v1,
                  Hcu2v1,
-                 Rpcu2v1,
+                 
                  Rncu2v1) #vax 1 dose and one prior
     
     
     Ncu0v2 = sum(
-      Spcu0v2,
-      Vpcu0v2,
+      
       Vncu0v2,
       Sncu0v2,
       Ecu1v2,
       Acu1v2,
       Icu1v2,
       Hcu1v2,
-      Rpcu1v2,
+      
       Rncu1v2
     ) #vax 2 dose and no prior exposure
-    Ncu1v2 = sum(Spcu1v2,
+    Ncu1v2 = sum(
                  Sncu1v2,
                  Ecu2v2,
                  Acu2v2,
                  Icu2v2,
                  Hcu2v2,
-                 Rpcu2v2,
+                
                  Rncu2v2) #vax 2 dose and one prior
     
     
     
     #Urban adult
-    Nau0v0 = sum(Sau0v0, Eau1v0, Aau1v0, Iau1v0, Hau1v0, Rpau1v0, Rnau1v0) #Unvax and no prior exposure
-    Nau1v0 = sum(Spau1v0,
+    Nau0v0 = sum(Sau0v0, Eau1v0, Aau1v0, Iau1v0, Hau1v0,  Rnau1v0) #Unvax and no prior exposure
+    Nau1v0 = sum(
                  Snau1v0,
                  Eau2v0,
                  Aau2v0,
                  Iau2v0,
                  Hau2v0,
-                 Rpau2v0,
+                 
                  Rnau2v0) #Unvax and one prior
     
     
     Nau0v1 = sum(
-      Spau0v1,
-      Vpau0v1,
+      
       Vnau0v1,
       Snau0v1,
       Eau1v1,
       Aau1v1,
       Iau1v1,
       Hau1v1,
-      Rpau1v1,
+     
       Rnau1v1
     ) #vax 1 dose and no prior exposure
-    Nau1v1 = sum(Spau1v1,
+    Nau1v1 = sum(
                  Snau1v1,
                  Eau2v1,
                  Aau2v1,
                  Iau2v1,
                  Hau2v1,
-                 Rpau2v1,
+                 
                  Rnau2v1) #vax 1 dose and one prior
     
     Nau0v2 = sum(
-      Spau0v2,
-      Vpau0v2,
+      
       Vnau0v2,
       Snau0v2,
       Eau1v2,
       Aau1v2,
       Iau1v2,
       Hau1v2,
-      Rpau1v2,
+      
       Rnau1v2
     ) #vax 2 dose and no prior exposure
-    Nau1v2 = sum(Spau1v2,
+    Nau1v2 = sum(
                  Snau1v2,
                  Eau2v2,
                  Aau2v2,
                  Iau2v2,
                  Hau2v2,
-                 Rpau2v2,
+                 
                  Rnau2v2) #vax 2 dose and one prior
     
     
@@ -127,57 +124,55 @@ COVID_sero_vax <- function(t, start, params) {
     
     
     #Urban elderly
-    Neu0v0 = sum(Seu0v0, Eeu1v0, Aeu1v0, Ieu1v0, Heu1v0, Rpeu1v0, Rneu1v0) #Unvax and no prior exposure
-    Neu1v0 = sum(Speu1v0,
+    Neu0v0 = sum(Seu0v0, Eeu1v0, Aeu1v0, Ieu1v0, Heu1v0,  Rneu1v0) #Unvax and no prior exposure
+    Neu1v0 = sum(
                  Sneu1v0,
                  Eeu2v0,
                  Aeu2v0,
                  Ieu2v0,
                  Heu2v0,
-                 Rpeu2v0,
+                 
                  Rneu2v0) #Unvax and one prior
     
     
     Neu0v1 = sum(
-      Speu0v1,
-      Vpeu0v1,
+      
       Vneu0v1,
       Sneu0v1,
       Eeu1v1,
       Aeu1v1,
       Ieu1v1,
       Heu1v1,
-      Rpeu1v1,
+     
       Rneu1v1
     ) #vax 1 dose and no prior exposure
-    Neu1v1 = sum(Speu1v1,
+    Neu1v1 = sum(
                  Sneu1v1,
                  Eeu2v1,
                  Aeu2v1,
                  Ieu2v1,
                  Heu2v1,
-                 Rpeu2v1,
+                 
                  Rneu2v1) #vax 1 dose and one prior
     
     Neu0v2 = sum(
-      Speu0v2,
-      Vpeu0v2,
+      
       Vneu0v2,
       Sneu0v2,
       Eeu1v2,
       Aeu1v2,
       Ieu1v2,
       Heu1v2,
-      Rpeu1v2,
+      
       Rneu1v2
     ) #vax 2 dose and no prior exposure
-    Neu1v2 = sum(Speu1v2,
+    Neu1v2 = sum(
                  Sneu1v2,
                  Eeu2v2,
                  Aeu2v2,
                  Ieu2v2,
                  Heu2v2,
-                 Rpeu2v2,
+                
                  Rneu2v2) #vax 2 dose and one prior
     
     ##Population sums
@@ -285,16 +280,14 @@ COVID_sero_vax <- function(t, start, params) {
     
     foi_cu_0v0 = beta_c * ((
       CM[4, 4] * (
-        Icu1v0 + Icu2v0 + Icu3v0 + Icu1v1 + Icu2v1 + Icu3v1 + Icu1v2 + Icu2v2 +
-          Icu3v2 + Icu1v3 + Icu2v3 + Icu3v3 + alpha * (
-            Acu1v0 + Acu2v0 + Acu3v0 + Acu1v1 + Acu2v1 + Acu3v1 + Acu1v2 + Acu2v2 +
-              Acu3v2 + Acu1v3 + Acu2v3 + Acu3v3
-          )
+        Icu1v0 + Icu2v0  + Icu1v1 + Icu2v1  + Icu1v2 + Icu2v2 +
+           alpha * (
+            Acu1v0 + Acu2v0  + Acu1v1 + Acu2v1 + Acu1v2 + Acu2v2 )
       ) / Nchildu
     ) +
       (
         CM[5, 4] * (
-          Iau1v0 + Iau2v0 + Iau3v0 + Iau1v1 + Iau2v1 + Iau3v1 + Iau1v2 + Iau2v2 +
+          Iau1v0 + Iau2v0  + Iau1v1 + Iau2v1 + Iau3v1 + Iau1v2 + Iau2v2 +
             Iau3v2 + Iau1v3 + Iau2v3 + Iau3v3 + alpha * (
               Aau1v0 + Aau2v0 + Aau3v0 + Aau1v1 + Aau2v1 + Aau3v1 + Aau1v2 + Aau2v2 +
                 Aau3v2 + Aau1v3 + Aau2v3 + Aau3v3
