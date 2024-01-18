@@ -995,16 +995,13 @@ COVID_sero_vax <- function(t, start, params) {
     
     
     ## First dose and seronegative
-    dVncr0v1 = (1 - rho_v1) * delta1_cr * Scr0v0  - delta2_cr * Vncr0v1 - omegav_nc *
-      Vncr0v1
+  
     dVncu0v1 = (1 - rho_v1) * delta1_cu * Scu0v0  - delta2_cu * Vncu0v1 - omegav_nc *
       Vncu0v1
-    dVnar0v1 = (1 - rho_v1) * delta1_ar * Sar0v0 - delta2_ar * Vnar0v1 - omegav_na *
-      Vnar0v1
+   
     dVnau0v1 = (1 - rho_v1) * delta1_au * Sau0v0 - delta2_au * Vnau0v1 - omegav_na *
       Vnau0v1
-    dVner0v1 = (1 - rho_v1) * delta1_er * Ser0v0  - delta2_er * Vner0v1 - omegav_ne *
-      Vner0v1
+   
     dVneu0v1 = (1 - rho_v1) * delta1_eu * Seu0v0  - delta2_eu * Vneu0v1 - omegav_ne *
       Vneu0v1
     
@@ -1012,16 +1009,13 @@ COVID_sero_vax <- function(t, start, params) {
     
     
     ##Seronegative
-    dVncr0v2 = (1 - rho_v2) * delta2_cr * Sncr0v1 + (1 - rho_v2) * delta2_cr * Vncr0v1 + kappa2 * Vpcr0v2 - delta3_cr * Vncr0v2 - omegav_nc *
-      Vncr0v2
+    
     dVncu0v2 = (1 - rho_v2) * delta2_cu * Sncu0v1 + (1 - rho_v2) * delta2_cu * Vncu0v1 + kappa2 * Vpcu0v2 - delta3_cu * Vncu0v2 - omegav_nc *
       Vncu0v2
-    dVnar0v2 = (1 - rho_v2) * delta2_ar * Snar0v1 + (1 - rho_v2) * delta2_ar * Vnar0v1 + kappa2 * Vpar0v2 - delta3_ar * Vnar0v2 - omegav_na *
-      Vnar0v2
+    
     dVnau0v2 = (1 - rho_v2) * delta2_au * Snau0v1 + (1 - rho_v2) * delta2_au * Vnau0v1 + kappa2 * Vpau0v2 - delta3_au * Vnau0v2 - omegav_na *
       Vnau0v2
-    dVner0v2 = (1 - rho_v2) * delta2_er * Sner0v1 + (1 - rho_v2) * delta2_er * Vner0v1 + kappa2 * Vper0v2 - delta3_er * Vner0v2 - omegav_ne *
-      Vner0v2
+   
     dVneu0v2 = (1 - rho_v2) * delta2_eu * Sneu0v1 + (1 - rho_v2) * delta2_eu * Vneu0v1 + kappa2 * Vpeu0v2 - delta3_eu * Vneu0v2 - omegav_ne *
       Vneu0v2
     
