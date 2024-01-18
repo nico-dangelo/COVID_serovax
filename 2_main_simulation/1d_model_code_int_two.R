@@ -411,7 +411,7 @@ COVID_sero_vax <- function(t, start, params) {
     ##Unvaccinated and unexposed####
     ################################
     #Susceptible
-    dScr0v0  = -Scr0v0 * sd * foi_cr_0v0 - delta1_cr * Scr0v0
+   
     dScu0v0  = -Scu0v0 * sd * foi_cu_0v0 - delta1_cu * Scu0v0
     dSau0v0  = -Sau0v0 * sd * foi_au_0v0 - delta1_au * Sau0v0
     dSeu0v0  = -Seu0v0 * sd * foi_eu_0v0 - delta1_eu * Seu0v0
@@ -454,19 +454,6 @@ COVID_sero_vax <- function(t, start, params) {
     
     dHeu1v0  =  phi_e * gamma_I * Ieu1v0 - gamma_H * Heu1v0
     
-    # Recovered and seroconverted
-    
-    dRpcu1v0  =  pi * (1 - phi_c) * gamma_I * Icu1v0 + pi * gamma_A * Acu1v0 + pi *
-      (1 - mu_c) * gamma_H * Hcu1v0 - 4 * kappa1 * Rpcu1v0 - omega_pc * Rpcu1v0 - delta1_cu *
-      Rpcu1v0
-    
-    dRpau1v0  =  pi * (1 - phi_a) * gamma_I * Iau1v0 + pi * gamma_A * Aau1v0 + pi *
-      (1 - mu_a) * gamma_H * Hau1v0 - 4 * kappa1 * Rpau1v0 - omega_pa * Rpau1v0 - delta1_au *
-      Rpau1v0
-    
-    dRpeu1v0  =  pi * (1 - phi_e) * gamma_I * Ieu1v0 + pi * gamma_A * Aeu1v0 + pi *
-      (1 - mu_e) * gamma_H * Heu1v0 - 4 * kappa1 * Rpeu1v0 - omega_pe * Rpeu1v0 - delta1_eu *
-      Rpeu1v0
     
     #Recovered and not seropositive
     
