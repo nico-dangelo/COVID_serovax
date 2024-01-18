@@ -482,12 +482,7 @@ COVID_sero_vax <- function(t, start, params) {
     ################################
     #Susceptible
     ##Note vaccination rate here doesnt differ by previous vax status
-    dSpcu1v0  = omega_pc * Rpcu1v0 - kappa1 * Spcu1v0 - Spcu1v0 * sd * foi_cu_1v0 - delta1_cu * Spcu1v0 + omega4_pc *
-      Spcu2v0
-    
-    dSpau1v0  = omega_pa * Rpau1v0  - kappa1 * Spau1v0 - Spau1v0 * sd * foi_au_1v0 - delta1_au * Spau1v0
-    
-    dSpeu1v0  = omega_pe * Rpeu1v0   - kappa1 * Speu1v0 - Speu1v0 * sd * foi_eu_1v0 - delta1_eu * Speu1v0
+   
     
     ##Note vaccination rate here doesnt differ by previous vax status
     dSncu1v0  = omega_nc * Rncu1v0 + kappa1 * Spcu1v0 - Sncu1v0 * sd * foi_cu_1v0 - delta1_cu * Sncu1v0 + omega4_nc *
@@ -535,19 +530,7 @@ COVID_sero_vax <- function(t, start, params) {
     
     dHeu2v0  =  phi_e * gamma_I * Ieu2v0 - gamma_H * Heu2v0
     
-    # Recovered and seroconverted
     
-    dRpcu2v0  =  pi * (1 - phi_c) * gamma_I * Icu2v0 + pi * gamma_A * Acu2v0 + pi *
-      (1 - mu_c) * gamma_H * Hcu2v0 - kappa2 * Rpcu2v0 - omega_pc * Rpcu2v0 - delta1_cu *
-      Rpcu2v0
-    
-    dRpau2v0  =  pi * (1 - phi_a) * gamma_I * Iau2v0 + pi * gamma_A * Aau2v0 + pi *
-      (1 - mu_a) * gamma_H * Hau2v0 - kappa2 * Rpau2v0 - omega_pa * Rpau2v0 - delta1_au *
-      Rpau2v0
-    
-    dRpeu2v0  =  pi * (1 - phi_e) * gamma_I * Ieu2v0 + pi * gamma_A * Aeu2v0 + pi *
-      (1 - mu_e) * gamma_H * Heu2v0 - kappa2 * Rpeu2v0 - omega_pe * Rpeu2v0 - delta1_eu *
-      Rpeu2v0
     
     #Recovered and not seropositive
     
@@ -576,16 +559,7 @@ COVID_sero_vax <- function(t, start, params) {
     ################################
     ##Vaccinated one dose and unexposed####
     ################################
-    #Susceptible and seropositive with S-spike and total IGg
-    
-    dSpcu0v1  =  omegav_pc * Vpcu0v1 - Spcu0v1 * sd * foi_cu_0v1 - delta2_cu * Spcu0v1  -
-      kappa1 * Spcu0v1
-    
-    dSpau0v1  =  omegav_pa * Vpau0v1 - Spau0v1 * sd * foi_au_0v1 - delta2_au * Spau0v1  -
-      kappa1 * Spau0v1
-    
-    dSpeu0v1  =  omegav_pe * Vpeu0v1 - Speu0v1 * sd * foi_eu_0v1 - delta2_eu * Speu0v1  -
-      kappa1 * Speu0v1
+   
     
     # Susceptible and seronegative for S-spike and total IGg
     
@@ -636,22 +610,7 @@ COVID_sero_vax <- function(t, start, params) {
     
     dHeu1v1  =  phi_ev1 * gamma_I * Ieu1v1 - gamma_H * Heu1v1
     
-    # Recovered and seroconverted
     
-    dRpcu1v1  =  pi * (1 - phi_cv1) * gamma_I * Icu1v1 + pi * gamma_A *
-      Acu1v1 + pi * (1 - mu_c) * gamma_H * Hcu1v1 - kappa2 * Rpcu1v1 - omega_pc *
-      Rpcu1v1 - delta2_cu * Rpcu1v1 + delta1_cu * Rpcu1v0+ delta1_cu * Rncu1v0 * rho_v1 +
-      delta1_cu * Spcu1v0 + delta1_cu * Sncu1v0 * rho_v1
-    
-    dRpau1v1  =  pi * (1 - phi_av1) * gamma_I * Iau1v1 + pi * gamma_A *
-      Aau1v1 + pi * (1 - mu_a) * gamma_H * Hau1v1 - kappa2 * Rpau1v1 - omega_pa *
-      Rpau1v1 - delta2_au * Rpau1v1 + delta1_au * Rpau1v0  + delta1_au * Rnau1v0 * rho_v1 +
-      delta1_au * Spau1v0 + delta1_au * Snau1v0 * rho_v1
-    
-    dRpeu1v1  =  pi * (1 - phi_ev1) * gamma_I * Ieu1v1 + pi * gamma_A *
-      Aeu1v1 + pi * (1 - mu_e) * gamma_H * Heu1v1 - kappa2 * Rpeu1v1 - omega_pe *
-      Rpeu1v1 - delta2_eu * Rpeu1v1 + delta1_eu * Rpeu1v0 + delta1_eu * Rneu1v0 * rho_v1 +
-      delta1_eu * Speu1v0 + delta1_eu * Sneu1v0 * rho_v1
     
     #Recovered and not seropositive
     
@@ -683,11 +642,7 @@ COVID_sero_vax <- function(t, start, params) {
     ################################
     #Susceptible
     
-    dSpcu1v1  = omega_pc * Rpcu1v1 - kappa2 * Spcu1v1 - Spcu1v1 * sd * foi_cu_1v1 - delta2_cu * Spcu1v1
-    
-    dSpau1v1  = omega_pa * Rpau1v1 - kappa2 * Spau1v1 - Spau1v1 * sd * foi_au_1v1 - delta2_au * Spau1v1
-    
-    dSpeu1v1  = omega_pe * Rpeu1v1 - kappa2 * Speu1v1 - Speu1v1 * sd * foi_eu_1v1 - delta2_eu * Speu1v1
+
     
     
     dSncu1v1  = omega_nc * Rncu1v1 + kappa2 * Spcu1v1 - Sncu1v1 * sd * foi_cu_1v1 - delta2_cu * Sncu1v1
@@ -734,22 +689,7 @@ COVID_sero_vax <- function(t, start, params) {
     
     dHeu2v1  =  phi_ev1 * gamma_I * Ieu2v1 - gamma_H * Heu2v1
     
-    # Recovered and seroconverted
     
-    dRpcu2v1  =  pi * (1 - phi_cv1) * gamma_I * Icu2v1 + pi * gamma_A *
-      Acu2v1 + pi * (1 - mu_c) * gamma_H * Hcu2v1 - kappa3 * Rpcu2v1 - omega_pc *
-      Rpcu2v1 - delta2_cu * Rpcu2v1 + delta1_cu * Rpcu2v0 + delta1_cu * Rncu2v0 *
-      (rho_v2) + delta1_cu * Spcu2v0 + delta1_cu * Sncu2v0 * (rho_v2)
-    
-    dRpau2v1  =  pi * (1 - phi_av1) * gamma_I * Iau2v1 + pi * gamma_A *
-      Aau2v1 + pi * (1 - mu_a) * gamma_H * Hau2v1 - kappa3 * Rpau2v1 - omega_pa *
-      Rpau2v1 - delta2_au * Rpau2v1 + delta1_au * Rpau2v0 + delta1_au * Rnau2v0 *
-      (rho_v2) + delta1_au * Spau2v0 + delta1_au * Snau2v0 * (rho_v2)
-    
-    dRpeu2v1  =  pi * (1 - phi_ev1) * gamma_I * Ieu2v1 + pi * gamma_A *
-      Aeu2v1 + pi * (1 - mu_e) * gamma_H * Heu2v1 - kappa3 * Rpeu2v1 - omega_pe *
-      Rpeu2v1 - delta2_eu * Rpeu2v1 + delta1_eu * Rpeu2v0 + delta1_eu * Rneu2v0 *
-      (rho_v2) + delta1_eu * Speu2v0 + delta1_eu * Sneu2v0 * (rho_v2)
     
     #Recovered and not seropositive
     
@@ -780,17 +720,7 @@ COVID_sero_vax <- function(t, start, params) {
     ################################
     ##Vaccinated two dose and unexposed####
     ################################
-    #Susceptible and seropositive with S-spike and total IGg
-    
-    dSpcu0v2  = omegav_pc * Vpcu0v2 - Spcu0v2 * sd * foi_cu_0v2 - delta3_cu * Spcu0v2  -
-      kappa2 * Spcu0v2 + omega3_pc * Spcu0v3
-    
-    dSpau0v2  = omegav_pa * Vpau0v2 - Spau0v2 * sd * foi_au_0v2 - delta3_au * Spau0v2  -
-      kappa2 * Spau0v2 + omega3_pa * Spau0v3
-    
-    dSpeu0v2  = omegav_pe * Vpeu0v2 - Speu0v2 * sd * foi_eu_0v2 - delta3_eu * Speu0v2  -
-      kappa2 * Speu0v2 + omega3_pe * Speu0v3
-    
+   
     #Susceptible
     
     dSncu0v2  = omegav_nc * Vncu0v2 - Sncu0v2 * sd * foi_cu_0v2 - delta3_cu * Sncu0v2 +
@@ -840,22 +770,7 @@ COVID_sero_vax <- function(t, start, params) {
     
     dHeu1v2  =  phi_ev2 * gamma_I * Ieu1v2 - gamma_H * Heu1v2
     
-    # Recovered and seroconverted
-    
-    dRpcu1v2  =  pi * (1 - phi_cv2) * gamma_I * Icu1v2 + pi * gamma_A *
-      Acu1v2 + pi * (1 - mu_c) * gamma_H * Hcu1v2 - kappa3 * Rpcu1v2 - omega_pc *
-      Rpcu1v2 - delta3_cu * Rpcu1v2 + delta2_cu * Rpcu1v1 + delta2_cu * Rncu1v1 *
-      (rho_v2) + delta2_cu * Spcu1v1 + delta2_cu * Sncu1v1 * (rho_v2)
-    
-    dRpau1v2  =  pi * (1 - phi_av2) * gamma_I * Iau1v2 + pi * gamma_A *
-      Aau1v2 + pi * (1 - mu_a) * gamma_H * Hau1v2 - kappa3 * Rpau1v2 - omega_pa *
-      Rpau1v2 - delta3_au * Rpau1v2 + delta2_au * Rpau1v1 + delta2_au * Rnau1v1 *
-      (rho_v2) + delta2_au * Spau1v1 + delta2_au * Snau1v1 * (rho_v2)
-    
-    dRpeu1v2  =  pi * (1 - phi_ev2) * gamma_I * Ieu1v2 + pi * gamma_A *
-      Aeu1v2 + pi * (1 - mu_e) * gamma_H * Heu1v2 - kappa3 * Rpeu1v2 - omega_pe *
-      Rpeu1v2 - delta3_eu * Rpeu1v2 + delta2_eu * Rpeu1v1 + delta2_eu * Rneu1v1 *
-      (rho_v2) + delta2_eu * Speu1v1 + delta2_eu * Sneu1v1 * (rho_v2)
+   
     
     #Recovered and not seropositive
     
@@ -885,16 +800,7 @@ COVID_sero_vax <- function(t, start, params) {
     ################################
     ##Vaccinated two dose and exposed once####
     ################################
-    #Susceptible
-    
-    dSpcu1v2  = omega_pc * Rpcu1v2 - kappa3 * Spcu1v2 - Spcu1v2 * sd * foi_cu_1v2 - delta3_cu * Spcu1v2 +
-      omega3_pc * Spcu1v3
-    
-    dSpau1v2  = omega_pa * Rpau1v2 - kappa3 * Spau1v2 - Spau1v2 * sd * foi_au_1v2 - delta3_au * Spau1v2 +
-      omega3_pa * Spau1v3 + omega4_pa * Spau2v2
-    
-    dSpeu1v2  = omega_pe * Rpeu1v2 - kappa3 * Speu1v2 - Speu1v2 * sd * foi_eu_1v2 - delta3_eu * Speu1v2 +
-      omega3_pe * Speu1v3 + omega4_pe * Speu2v2
+   
     
     
     dSncu1v2  = omega_nc * Rncu1v2 + kappa3 * Spcu1v2 - Sncu1v2 * sd * foi_cu_1v2 - delta3_cu * Sncu1v2 +
@@ -944,22 +850,8 @@ COVID_sero_vax <- function(t, start, params) {
     
     dHeu2v2  =  phi_ev2 * gamma_I * Ieu2v2 - gamma_H * Heu2v2
     
-    # Recovered and seroconverted
+
     
-    dRpcu2v2  =  pi * (1 - phi_cv2) * gamma_I * Icu2v2 + pi * gamma_A *
-      Acu2v2 + pi * (1 - mu_c) * gamma_H * Hcu2v2 - kappa3 * Rpcu2v2 - omega_pc *
-      Rpcu2v2 - delta3_cu * Rpcu2v2 + delta2_cu * Rpcu2v1 + delta2_cu * Rncu2v1 *
-      rho_v2
-    
-    dRpau2v2  =  pi * (1 - phi_av2) * gamma_I * Iau2v2 + pi * gamma_A *
-      Aau2v2 + pi * (1 - mu_a) * gamma_H * Hau2v2 - kappa3 * Rpau2v2 - omega_pa *
-      Rpau2v2 - delta3_au * Rpau2v2 + delta2_au * Rpau2v1 + delta2_au * Rnau2v1 *
-      rho_v2
-    
-    dRpeu2v2  =  pi * (1 - phi_ev2) * gamma_I * Ieu2v2 + pi * gamma_A *
-      Aeu2v2 + pi * (1 - mu_e) * gamma_H * Heu2v2 - kappa3 * Rpeu2v2 - omega_pe *
-      Rpeu2v2 - delta3_eu * Rpeu2v2 + delta2_eu * Rpeu2v1 + delta2_eu * Rneu2v1 *
-      rho_v2
     
     #Recovered and not seropositive
     
@@ -1100,20 +992,7 @@ COVID_sero_vax <- function(t, start, params) {
     
     ##Classes of temporary immunity from those who were vaccinated
     ## First dose
-    ## Seropositive
     
-    dVpcr0v1 = rho_v1 * delta1_cr * Scr0v0 - 4 * kappa1 * Vpcr0v1 - delta2_cr * Vpcr0v1 - omegav_pc *
-      Vpcr0v1
-    dVpcu0v1 = rho_v1 * delta1_cu * Scu0v0 - 4 * kappa1 * Vpcu0v1 - delta2_cu * Vpcu0v1 - omegav_pc *
-      Vpcu0v1
-    dVpar0v1 = rho_v1 * delta1_ar * Sar0v0 - 4 * kappa1 * Vpar0v1 - delta2_ar * Vpar0v1 - omegav_pa *
-      Vpar0v1
-    dVpau0v1 = rho_v1 * delta1_au * Sau0v0 - 4 * kappa1 * Vpau0v1 - delta2_au * Vpau0v1 - omegav_pa *
-      Vpau0v1
-    dVper0v1 = rho_v1 * delta1_er * Ser0v0 - 4 * kappa1 * Vper0v1 - delta2_er * Vper0v1 - omegav_pe *
-      Vper0v1
-    dVpeu0v1 = rho_v1 * delta1_eu * Seu0v0 - 4 * kappa1 * Vpeu0v1 - delta2_eu * Vpeu0v1 - omegav_pe *
-      Vpeu0v1
     
     ## First dose and seronegative
     dVncr0v1 = (1 - rho_v1) * delta1_cr * Scr0v0  - delta2_cr * Vncr0v1 - omegav_nc *
@@ -1130,31 +1009,7 @@ COVID_sero_vax <- function(t, start, params) {
       Vneu0v1
     
     ##Second dose
-    ##Seropositive
-    dVpcr0v2 =  delta2_cr * Spcr0v1 + (rho_v2) * delta2_cr * Sncr0v1 + delta2_cr *
-      Vpcr0v1  +
-      (rho_v2) * delta2_cr * Vncr0v1 - kappa2 * Vpcr0v2 - delta3_cr * Vpcr0v2 - omegav_pc *
-      Vpcr0v2
-    dVpcu0v2 =  delta2_cu * Spcu0v1 + (rho_v2) * delta2_cu * Sncu0v1 + delta2_cu *
-      Vpcu0v1  +
-      (rho_v2) * delta2_cu * Vncu0v1 - kappa2 * Vpcu0v2 - delta3_cu * Vpcu0v2 - omegav_pc *
-      Vpcu0v2
-    dVpar0v2 =  delta2_ar * Spar0v1 + (rho_v2) * delta2_ar * Snar0v1 + delta2_ar *
-      Vpar0v1  +
-      (rho_v2) * delta2_ar * Vnar0v1 - kappa2 * Vpar0v2 - delta3_ar * Vpar0v2 - omegav_pa *
-      Vpar0v2
-    dVpau0v2 =  delta2_au * Spau0v1 + (rho_v2) * delta2_au * Snau0v1 + delta2_au *
-      Vpau0v1  +
-      (rho_v2) * delta2_au * Vnau0v1 - kappa2 * Vpau0v2 - delta3_au * Vpau0v2 - omegav_pa *
-      Vpau0v2
-    dVper0v2 =  delta2_er * Sper0v1 + (rho_v2) * delta2_er * Sner0v1 + delta2_er *
-      Vper0v1 +
-      (rho_v2) * delta2_er * Vner0v1 - kappa2 * Vper0v2 - delta3_er * Vper0v2 - omegav_pe *
-      Vper0v2
-    dVpeu0v2 =  delta2_eu * Speu0v1 + (rho_v2) * delta2_eu * Sneu0v1 + delta2_eu *
-      Vpeu0v1 + 
-      (rho_v2) * delta2_eu * Vneu0v1 - kappa2 * Vpeu0v2 - delta3_eu * Vpeu0v2 - omegav_pe *
-      Vpeu0v2
+    
     
     ##Seronegative
     dVncr0v2 = (1 - rho_v2) * delta2_cr * Sncr0v1 + (1 - rho_v2) * delta2_cr * Vncr0v1 + kappa2 * Vpcr0v2 - delta3_cr * Vncr0v2 - omegav_nc *
