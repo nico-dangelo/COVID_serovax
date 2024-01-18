@@ -1033,346 +1033,290 @@ COVID_sero_vax <- function(t, start, params) {
     
     
     vswitch = 1 #switch for swtiching off the vaccination
-    delta1_cr = 0
+  
     delta1_cu = 0
-    delta3_ar = 0
+   
     delta3_au = 0
-    delta3_er = 0
+   
     delta3_eu = 0
     
     res = c(
-      dScr0v0,
+      
       dScu0v0,
-      dSar0v0,
+     
       dSau0v0,
-      dSer0v0,
+     
       dSeu0v0,
-      dEcr1v0,
+      
       dEcu1v0,
-      dEar1v0,
+     
       dEau1v0,
-      dEer1v0,
+      
       dEeu1v0,
-      dAcr1v0,
+     
       dAcu1v0,
-      dAar1v0,
+     
       dAau1v0,
-      dAer1v0,
+     
       dAeu1v0,
-      dIcr1v0,
+    
       dIcu1v0,
-      dIar1v0,
+     
       dIau1v0,
-      dIer1v0,
+     
       dIeu1v0,
-      dHcr1v0,
+     
       dHcu1v0,
-      dHar1v0,
+      
       dHau1v0,
-      dHer1v0,
+     
       dHeu1v0,
-      dRpcr1v0,
-      dRpcu1v0,
-      dRpar1v0,
-      dRpau1v0,
-      dRper1v0,
-      dRpeu1v0,
-      dRncr1v0,
+      
+      
       dRncu1v0,
-      dRnar1v0,
+      
       dRnau1v0,
-      dRner1v0,
+     
       dRneu1v0,
-      dDcr1v0,
+    
       dDcu1v0,
-      dDar1v0,
+     
       dDau1v0,
-      dDer1v0,
+    
       dDeu1v0,
       
       #Unvax one prior exposure
-      dSpcr1v0,
-      dSpcu1v0,
-      dSpar1v0,
-      dSpau1v0,
-      dSper1v0,
-      dSpeu1v0,
-      dSncr1v0,
+     
+      
       dSncu1v0,
-      dSnar1v0,
+     
       dSnau1v0,
-      dSner1v0,
+     
       dSneu1v0,
-      dEcr2v0,
+      
       dEcu2v0,
-      dEar2v0,
+     
       dEau2v0,
-      dEer2v0,
+     
       dEeu2v0,
-      dAcr2v0,
+    
       dAcu2v0,
-      dAar2v0,
+     
       dAau2v0,
-      dAer2v0,
+      
       dAeu2v0,
-      dIcr2v0,
+     
       dIcu2v0,
-      dIar2v0,
+     
       dIau2v0,
-      dIer2v0,
+      
       dIeu2v0,
-      dHcr2v0,
+     
       dHcu2v0,
-      dHar2v0,
+      
       dHau2v0,
-      dHer2v0,
+     
       dHeu2v0,
-      dRpcr2v0,
-      dRpcu2v0,
-      dRpar2v0,
-      dRpau2v0,
-      dRper2v0,
-      dRpeu2v0,
-      dRncr2v0,
+      
+      
       dRncu2v0,
-      dRnar2v0,
+     
       dRnau2v0,
-      dRner2v0,
+      
       dRneu2v0,
-      dDcr2v0,
+     
       dDcu2v0,
-      dDar2v0,
+      
       dDau2v0,
-      dDer2v0,
+      
       dDeu2v0,
       
       
       
       ##One vax dose no exposure
       
-      dSpcr0v1,
-      dSpcu0v1,
-      dSpar0v1,
-      dSpau0v1,
-      dSper0v1,
-      dSpeu0v1,
-      dSncr0v1,
+      
+     
       dSncu0v1,
-      dSnar0v1,
+      
       dSnau0v1,
-      dSner0v1,
+      
       dSneu0v1,
-      dEcr1v1,
+     
       dEcu1v1,
-      dEar1v1,
+    
       dEau1v1,
-      dEer1v1,
+     
       dEeu1v1,
-      dAcr1v1,
+    
       dAcu1v1,
-      dAar1v1,
+      
       dAau1v1,
-      dAer1v1,
+     
       dAeu1v1,
-      dIcr1v1,
+      
       dIcu1v1,
-      dIar1v1,
+      
       dIau1v1,
-      dIer1v1,
+      
       dIeu1v1,
-      dHcr1v1,
+     
       dHcu1v1,
-      dHar1v1,
+      
       dHau1v1,
-      dHer1v1,
+     
       dHeu1v1,
-      dRpcr1v1,
-      dRpcu1v1,
-      dRpar1v1,
-      dRpau1v1,
-      dRper1v1,
-      dRpeu1v1,
-      dRncr1v1,
+    
       dRncu1v1,
-      dRnar1v1,
+    
       dRnau1v1,
-      dRner1v1,
+     
       dRneu1v1,
-      dDcr1v1,
+     
       dDcu1v1,
-      dDar1v1,
+      
       dDau1v1,
-      dDer1v1,
+     
       dDeu1v1,
       
       #One vax dose one prior exposure
-      dSpcr1v1,
-      dSpcu1v1,
-      dSpar1v1,
-      dSpau1v1,
-      dSper1v1,
-      dSpeu1v1,
-      dSncr1v1,
+      
+     
       dSncu1v1,
-      dSnar1v1,
+      
       dSnau1v1,
-      dSner1v1,
+      
       dSneu1v1,
-      dEcr2v1,
+     
       dEcu2v1,
-      dEar2v1,
+     
       dEau2v1,
-      dEer2v1,
+     
       dEeu2v1,
-      dAcr2v1,
+      
       dAcu2v1,
-      dAar2v1,
+     
       dAau2v1,
-      dAer2v1,
+     
       dAeu2v1,
-      dIcr2v1,
+     
       dIcu2v1,
-      dIar2v1,
+     
       dIau2v1,
-      dIer2v1,
+     
       dIeu2v1,
-      dHcr2v1,
+     
       dHcu2v1,
-      dHar2v1,
+     
       dHau2v1,
-      dHer2v1,
+      
       dHeu2v1,
-      dRpcr2v1,
-      dRpcu2v1,
-      dRpar2v1,
-      dRpau2v1,
-      dRper2v1,
-      dRpeu2v1,
-      dRncr2v1,
+      
+     
       dRncu2v1,
-      dRnar2v1,
+     
       dRnau2v1,
-      dRner2v1,
+     
       dRneu2v1,
-      dDcr2v1,
+      
       dDcu2v1,
-      dDar2v1,
+      
       dDau2v1,
-      dDer2v1,
+     
       dDeu2v1,
       
       
       
       ##Two vax dose no prior exposure
-      dSpcr0v2,
-      dSpcu0v2,
-      dSpar0v2,
-      dSpau0v2,
-      dSper0v2,
-      dSpeu0v2,
-      dSncr0v2,
+      
+      
       dSncu0v2,
-      dSnar0v2,
+      
       dSnau0v2,
-      dSner0v2,
+    
       dSneu0v2,
-      dEcr1v2,
+      
       dEcu1v2,
-      dEar1v2,
+      
       dEau1v2,
-      dEer1v2,
+     
       dEeu1v2,
-      dAcr1v2,
+     
       dAcu1v2,
-      dAar1v2,
+      
       dAau1v2,
-      dAer1v2,
+      
       dAeu1v2,
-      dIcr1v2,
+     
       dIcu1v2,
-      dIar1v2,
+     
       dIau1v2,
-      dIer1v2,
+     
       dIeu1v2,
-      dHcr1v2,
+     
       dHcu1v2,
-      dHar1v2,
+     
       dHau1v2,
-      dHer1v2,
+     
       dHeu1v2,
-      dRpcr1v2,
-      dRpcu1v2,
-      dRpar1v2,
-      dRpau1v2,
-      dRper1v2,
-      dRpeu1v2,
-      dRncr1v2,
+     
+    
       dRncu1v2,
-      dRnar1v2,
+      
       dRnau1v2,
-      dRner1v2,
+     
       dRneu1v2,
-      dDcr1v2,
+    
       dDcu1v2,
-      dDar1v2,
+    
       dDau1v2,
-      dDer1v2,
+    
       dDeu1v2,
       
       #Two vax dose one prior exposure
-      dSpcr1v2,
-      dSpcu1v2,
-      dSpar1v2,
-      dSpau1v2,
-      dSper1v2,
-      dSpeu1v2,
-      dSncr1v2,
+      
+      
       dSncu1v2,
-      dSnar1v2,
+      
       dSnau1v2,
-      dSner1v2,
+     
       dSneu1v2,
-      dEcr2v2,
+    
       dEcu2v2,
-      dEar2v2,
+     
       dEau2v2,
-      dEer2v2,
+     
       dEeu2v2,
-      dAcr2v2,
+     
       dAcu2v2,
-      dAar2v2,
+    
       dAau2v2,
-      dAer2v2,
+    
       dAeu2v2,
-      dIcr2v2,
+      
       dIcu2v2,
-      dIar2v2,
+      
       dIau2v2,
-      dIer2v2,
+     
       dIeu2v2,
-      dHcr2v2,
+     
       dHcu2v2,
-      dHar2v2,
+      
       dHau2v2,
-      dHer2v2,
+     
       dHeu2v2,
-      dRpcr2v2,
-      dRpcu2v2,
-      dRpar2v2,
-      dRpau2v2,
-      dRper2v2,
-      dRpeu2v2,
-      dRncr2v2,
+     
+     
       dRncu2v2,
-      dRnar2v2,
+    
       dRnau2v2,
-      dRner2v2,
+    
       dRneu2v2,
-      dDcr2v2,
+     
       dDcu2v2,
-      dDar2v2,
+      
       dDau2v2,
-      dDer2v2,
+     
       dDeu2v2,
       
       
@@ -1381,87 +1325,87 @@ COVID_sero_vax <- function(t, start, params) {
       
       
       
-      dEcum1v0_cr,
+     
       dEcum1v0_cu,
-      dEcum1v0_ar,
+      
       dEcum1v0_au,
-      dEcum1v0_er,
+     
       dEcum1v0_eu,
-      dEcum2v0_cr,
+      
       dEcum2v0_cu,
-      dEcum2v0_ar,
+      
       dEcum2v0_au,
-      dEcum2v0_er,
+     
       dEcum2v0_eu,
       
-      dEcum1v1_cr,
+     
       dEcum1v1_cu,
-      dEcum1v1_ar,
+    
       dEcum1v1_au,
-      dEcum1v1_er,
+     
       dEcum1v1_eu,
-      dEcum2v1_cr,
+    
       dEcum2v1_cu,
-      dEcum2v1_ar,
+    
       dEcum2v1_au,
-      dEcum2v1_er,
+     
       dEcum2v1_eu,
       
       
-      dEcum1v2_cr,
+     
       dEcum1v2_cu,
-      dEcum1v2_ar,
+    
       dEcum1v2_au,
-      dEcum1v2_er,
+    
       dEcum1v2_eu,
-      dEcum2v2_cr,
+      
       dEcum2v2_cu,
-      dEcum2v2_ar,
+    
       dEcum2v2_au,
-      dEcum2v2_er,
+     
       dEcum2v2_eu,
       
       
       
       
-      dIcum1v0_cr,
+      
       dIcum1v0_cu,
-      dIcum1v0_ar,
+      
       dIcum1v0_au,
-      dIcum1v0_er,
+     
       dIcum1v0_eu,
-      dIcum2v0_cr,
+      
       dIcum2v0_cu,
-      dIcum2v0_ar,
+     
       dIcum2v0_au,
-      dIcum2v0_er,
+     
       dIcum2v0_eu,
       
-      dIcum1v1_cr,
+    
       dIcum1v1_cu,
-      dIcum1v1_ar,
+     
       dIcum1v1_au,
-      dIcum1v1_er,
+      
       dIcum1v1_eu,
-      dIcum2v1_cr,
+   
       dIcum2v1_cu,
-      dIcum2v1_ar,
+     
       dIcum2v1_au,
-      dIcum2v1_er,
+     
       dIcum2v1_eu,
       
       
-      dIcum1v2_cr,
+     
       dIcum1v2_cu,
-      dIcum1v2_ar,
+     
       dIcum1v2_au,
-      dIcum1v2_er,
+     
       dIcum1v2_eu,
-      dIcum2v2_cr,
+     
       dIcum2v2_cu,
-      dIcum2v2_ar,
+     
       dIcum2v2_au,
-      dIcum2v2_er,
+     
       dIcum2v2_eu,
       
       
@@ -1469,29 +1413,17 @@ COVID_sero_vax <- function(t, start, params) {
       
       
       
-      dVpcr0v1,
-      dVpcu0v1,
-      dVpar0v1,
-      dVpau0v1,
-      dVper0v1,
-      dVpeu0v1,
-      dVncr0v1,
+      
       dVncu0v1,
-      dVnar0v1,
+    
       dVnau0v1,
-      dVner0v1,
+      
       dVneu0v1,
-      dVpcr0v2,
-      dVpcu0v2,
-      dVpar0v2,
-      dVpau0v2,
-      dVper0v2,
-      dVpeu0v2,
-      dVncr0v2,
+      
       dVncu0v2,
-      dVnar0v2,
+     
       dVnau0v2,
-      dVner0v2,
+    
       dVneu0v2,
       
       
@@ -1531,11 +1463,11 @@ COVID_sero_vax <- function(t, start, params) {
       'foi_au_2v2' = foi_au_2v2,
       'foi_eu_2v2' = foi_eu_2v2,
       
-      'delta1_cr' = delta1_cr,
+     
       'delta1_cu' = delta1_cu,
-      'delta3_ar' = delta3_ar,
+      
       'delta3_au' = delta3_au,
-      'delta3_er' = delta3_er,
+      
       'delta3_eu' = delta3_eu
     )
     
