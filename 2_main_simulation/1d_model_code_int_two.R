@@ -485,22 +485,22 @@ COVID_sero_vax <- function(t, start, params) {
    
     
     ##Note vaccination rate here doesnt differ by previous vax status
-    dSncu1v0  = omega_nc * Rncu1v0 + kappa1 * Spcu1v0 - Sncu1v0 * sd * foi_cu_1v0 - delta1_cu * Sncu1v0 + omega4_nc *
+    dSncu1v0  = omega_nc * Rncu1v0  - Sncu1v0 * sd * foi_cu_1v0 - delta1_cu * Sncu1v0 + omega4_nc *
       Sncu2v0
     
-    dSnau1v0  = omega_na * Rnau1v0 + kappa1 * Spau1v0 - Snau1v0 * sd * foi_au_1v0 - delta1_au * Snau1v0
+    dSnau1v0  = omega_na * Rnau1v0  - Snau1v0 * sd * foi_au_1v0 - delta1_au * Snau1v0
     
-    dSneu1v0  = omega_ne * Rneu1v0 + kappa1 * Speu1v0 - Sneu1v0 * sd * foi_eu_1v0 - delta1_eu * Sneu1v0
+    dSneu1v0  = omega_ne * Rneu1v0  - Sneu1v0 * sd * foi_eu_1v0 - delta1_eu * Sneu1v0
     
     #Exposed
     
-    dEcu2v0  =  Spcu1v0 * sd * foi_cu_1v0 + Sncu1v0 * sd * foi_cu_1v0 -  sigma * Ecu2v0  - delta1_cu *
+    dEcu2v0  =    Sncu1v0 * sd * foi_cu_1v0 -  sigma * Ecu2v0  - delta1_cu *
       Ecu2v0
     
-    dEau2v0  =  Spau1v0 * sd * foi_au_1v0 + Snau1v0 * sd * foi_au_1v0 -  sigma * Eau2v0  - delta1_au *
+    dEau2v0  =   Snau1v0 * sd * foi_au_1v0 -  sigma * Eau2v0  - delta1_au *
       Eau2v0
     
-    dEeu2v0  =  Speu1v0 * sd * foi_eu_1v0 + Sneu1v0 * sd * foi_eu_1v0 -  sigma * Eeu2v0  - delta1_eu *
+    dEeu2v0  =   Sneu1v0 * sd * foi_eu_1v0 -  sigma * Eeu2v0  - delta1_eu *
       Eeu2v0
     
     # Asymptomatic
@@ -535,15 +535,15 @@ COVID_sero_vax <- function(t, start, params) {
     #Recovered and not seropositive
     
     dRncu2v0  =  (1 - pi) * (1 - phi_c) * gamma_I * Icu2v0 + (1 - pi) *
-      gamma_A * Acu2v0 + (1 - pi) * (1 - mu_c) * gamma_H * Hcu2v0 + kappa2 * Rpcu2v0 - omega_nc *
+      gamma_A * Acu2v0 + (1 - pi) * (1 - mu_c) * gamma_H * Hcu2v0  - omega_nc *
       Rncu2v0 - delta1_cu * Rncu2v0
     
     dRnau2v0  =  (1 - pi) * (1 - phi_a) * gamma_I * Iau2v0 + (1 - pi) *
-      gamma_A * Aau2v0 + (1 - pi) * (1 - mu_a) * gamma_H * Hau2v0 + kappa2 * Rpau2v0 - omega_na *
+      gamma_A * Aau2v0 + (1 - pi) * (1 - mu_a) * gamma_H * Hau2v0 - omega_na *
       Rnau2v0 - delta1_au * Rnau2v0
     
     dRneu2v0  =  (1 - pi) * (1 - phi_e) * gamma_I * Ieu2v0 + (1 - pi) *
-      gamma_A * Aeu2v0 + (1 - pi) * (1 - mu_e) * gamma_H * Heu2v0 + kappa2 * Rpeu2v0 - omega_ne *
+      gamma_A * Aeu2v0 + (1 - pi) * (1 - mu_e) * gamma_H * Heu2v0  - omega_ne *
       Rneu2v0 - delta1_eu * Rneu2v0
     
     #Deaths
@@ -563,24 +563,21 @@ COVID_sero_vax <- function(t, start, params) {
     
     # Susceptible and seronegative for S-spike and total IGg
     
-    dSncu0v1  = omegav_nc * Vncu0v1 - Sncu0v1 * sd * foi_cu_0v1 - delta2_cu * Sncu0v1 +
-      kappa1 * Spcu0v1
+    dSncu0v1  = omegav_nc * Vncu0v1 - Sncu0v1 * sd * foi_cu_0v1 - delta2_cu * Sncu0v1 
     
-    dSnau0v1  = omegav_na * Vnau0v1 - Snau0v1 * sd * foi_au_0v1 - delta2_au * Snau0v1 +
-      kappa1 * Spau0v1
+    dSnau0v1  = omegav_na * Vnau0v1 - Snau0v1 * sd * foi_au_0v1 - delta2_au * Snau0v1 
     
-    dSneu0v1  = omegav_ne * Vneu0v1 - Sneu0v1 * sd * foi_eu_0v1 - delta2_eu * Sneu0v1 +
-      kappa1 * Speu0v1
+    dSneu0v1  = omegav_ne * Vneu0v1 - Sneu0v1 * sd * foi_eu_0v1 - delta2_eu * Sneu0v1 
     
     #Exposed
     
-    dEcu1v1  =  Spcu0v1 * sd * foi_cu_0v1 + Sncu0v1 * sd * foi_cu_0v1 - sigma * Ecu1v1  - delta2_cu *
+    dEcu1v1  =   Sncu0v1 * sd * foi_cu_0v1 - sigma * Ecu1v1  - delta2_cu *
       Ecu1v1 + delta1_cu * Ecu1v0
     
-    dEau1v1  =  Spau0v1 * sd * foi_au_0v1 + Snau0v1 * sd * foi_au_0v1 -  sigma * Eau1v1  - delta2_au *
+    dEau1v1  =   Snau0v1 * sd * foi_au_0v1 -  sigma * Eau1v1  - delta2_au *
       Eau1v1 + delta1_au * Eau1v0
     
-    dEeu1v1  =  Speu0v1 * sd * foi_eu_0v1 + Sneu0v1 * sd * foi_eu_0v1 -  sigma * Eeu1v1  - delta2_eu *
+    dEeu1v1  =    Sneu0v1 * sd * foi_eu_0v1 -  sigma * Eeu1v1  - delta2_eu *
       Eeu1v1 + delta1_eu * Eeu1v0
     
     # Asymptomatic
@@ -615,17 +612,17 @@ COVID_sero_vax <- function(t, start, params) {
     #Recovered and not seropositive
     
     dRncu1v1  =  (1 - pi) * (1 - phi_cv1) * gamma_I * Icu1v1 + (1 - pi) *
-      gamma_A * Acu1v1 + (1 - pi) * (1 - mu_c) * gamma_H * Hcu1v1 + kappa2 * Rpcu1v1 - omega_nc *
+      gamma_A * Acu1v1 + (1 - pi) * (1 - mu_c) * gamma_H * Hcu1v1  - omega_nc *
       Rncu1v1 - delta2_cu * Rncu1v1 + delta1_cu * Rncu1v0 * (1 - rho_v1) + delta1_cu *
       Sncu1v0 * (1 - rho_v1)
     
     dRnau1v1  =  (1 - pi) * (1 - phi_av1) * gamma_I * Iau1v1 + (1 - pi) *
-      gamma_A * Aau1v1 + (1 - pi) * (1 - mu_a) * gamma_H * Hau1v1 + kappa2 * Rpau1v1 - omega_na *
+      gamma_A * Aau1v1 + (1 - pi) * (1 - mu_a) * gamma_H * Hau1v1 - omega_na *
       Rnau1v1 - delta2_au * Rnau1v1 + delta1_au * Rnau1v0 * (1 - rho_v1) + delta1_au *
       Snau1v0 * (1 - rho_v1)
     
     dRneu1v1  =  (1 - pi) * (1 - phi_ev1) * gamma_I * Ieu1v1 + (1 - pi) *
-      gamma_A * Aeu1v1 + (1 - pi) * (1 - mu_e) * gamma_H * Heu1v1 + kappa2 * Rpeu1v1 - omega_ne *
+      gamma_A * Aeu1v1 + (1 - pi) * (1 - mu_e) * gamma_H * Heu1v1  - omega_ne *
       Rneu1v1 - delta2_eu * Rneu1v1 + delta1_eu * Rneu1v0 * (1 - rho_v1) + delta1_eu *
       Sneu1v0 * (1 - rho_v1)
     
@@ -645,21 +642,21 @@ COVID_sero_vax <- function(t, start, params) {
 
     
     
-    dSncu1v1  = omega_nc * Rncu1v1 + kappa2 * Spcu1v1 - Sncu1v1 * sd * foi_cu_1v1 - delta2_cu * Sncu1v1
+    dSncu1v1  = omega_nc * Rncu1v1  - Sncu1v1 * sd * foi_cu_1v1 - delta2_cu * Sncu1v1
     
-    dSnau1v1  = omega_na * Rnau1v1 + kappa2 * Spau1v1 - Snau1v1 * sd * foi_au_1v1 - delta2_au * Snau1v1
+    dSnau1v1  = omega_na * Rnau1v1  - Snau1v1 * sd * foi_au_1v1 - delta2_au * Snau1v1
     
-    dSneu1v1  = omega_ne * Rneu1v1 + kappa2 * Speu1v1 - Sneu1v1 * sd * foi_eu_1v1 - delta2_eu * Sneu1v1
+    dSneu1v1  = omega_ne * Rneu1v1  - Sneu1v1 * sd * foi_eu_1v1 - delta2_eu * Sneu1v1
     
     #Exposed
     
-    dEcu2v1  =  Spcu1v1 * sd * foi_cu_1v1 + Sncu1v1 * sd * foi_cu_1v1 -  sigma * Ecu2v1  - delta2_cu *
+    dEcu2v1  =    Sncu1v1 * sd * foi_cu_1v1 -  sigma * Ecu2v1  - delta2_cu *
       Ecu2v1 + delta1_cu * Ecu2v0
     
-    dEau2v1  =  Spau1v1 * sd * foi_au_1v1 + Snau1v1 * sd * foi_au_1v1 -  sigma * Eau2v1  - delta2_au *
+    dEau2v1  =    Snau1v1 * sd * foi_au_1v1 -  sigma * Eau2v1  - delta2_au *
       Eau2v1 + delta1_au * Eau2v0
     
-    dEeu2v1  =  Speu1v1 * sd * foi_eu_1v1 + Sneu1v1 * sd * foi_eu_1v1 -  sigma * Eeu2v1  - delta2_eu *
+    dEeu2v1  =    Sneu1v1 * sd * foi_eu_1v1 -  sigma * Eeu2v1  - delta2_eu *
       Eeu2v1 + delta1_eu * Eeu2v0
     
     # Asymptomatic
@@ -694,17 +691,17 @@ COVID_sero_vax <- function(t, start, params) {
     #Recovered and not seropositive
     
     dRncu2v1  =  (1 - pi) * (1 - phi_cv1) * gamma_I * Icu2v1 + (1 - pi) *
-      gamma_A * Acu2v1 + (1 - pi) * (1 - mu_c) * gamma_H * Hcu2v1 + kappa3 * Rpcu2v1 - omega_nc *
+      gamma_A * Acu2v1 + (1 - pi) * (1 - mu_c) * gamma_H * Hcu2v1  - omega_nc *
       Rncu2v1 - delta2_cu * Rncu2v1 + delta1_cu * Rncu2v0 * (1 - rho_v2) + delta1_cu *
       Sncu2v0 * (1 - rho_v2)
     
     dRnau2v1  =  (1 - pi) * (1 - phi_av1) * gamma_I * Iau2v1 + (1 - pi) *
-      gamma_A * Aau2v1 + (1 - pi) * (1 - mu_a) * gamma_H * Hau2v1 + kappa3 * Rpau2v1 - omega_na *
+      gamma_A * Aau2v1 + (1 - pi) * (1 - mu_a) * gamma_H * Hau2v1 - omega_na *
       Rnau2v1 - delta2_au * Rnau2v1 + delta1_au * Rnau2v0 * (1 - rho_v2) + delta1_au *
       Snau2v0 * (1 - rho_v2)
     
     dRneu2v1  =  (1 - pi) * (1 - phi_ev1) * gamma_I * Ieu2v1 + (1 - pi) *
-      gamma_A * Aeu2v1 + (1 - pi) * (1 - mu_e) * gamma_H * Heu2v1 + kappa3 * Rpeu2v1 - omega_ne *
+      gamma_A * Aeu2v1 + (1 - pi) * (1 - mu_e) * gamma_H * Heu2v1  - omega_ne *
       Rneu2v1 - delta2_eu * Rneu2v1 + delta1_eu * Rneu2v0 * (1 - rho_v2) + delta1_eu *
       Sneu2v0 * (1 - rho_v2)
     
@@ -723,24 +720,21 @@ COVID_sero_vax <- function(t, start, params) {
    
     #Susceptible
     
-    dSncu0v2  = omegav_nc * Vncu0v2 - Sncu0v2 * sd * foi_cu_0v2 - delta3_cu * Sncu0v2 +
-      kappa2 * Spcu0v2 + omega3_nc * Sncu0v3
+    dSncu0v2  = omegav_nc * Vncu0v2 - Sncu0v2 * sd * foi_cu_0v2 - delta3_cu * Sncu0v2  
     
-    dSnau0v2  = omegav_na * Vnau0v2 - Snau0v2 * sd * foi_au_0v2 - delta3_au * Snau0v2 +
-      kappa2 * Spau0v2 + omega3_na * Snau0v3
+    dSnau0v2  = omegav_na * Vnau0v2 - Snau0v2 * sd * foi_au_0v2 - delta3_au * Snau0v2 
     
-    dSneu0v2  = omegav_ne * Vneu0v2 - Sneu0v2 * sd * foi_eu_0v2 - delta3_eu * Sneu0v2 +
-      kappa2 * Speu0v2 + omega3_ne * Sneu0v3
+    dSneu0v2  = omegav_ne * Vneu0v2 - Sneu0v2 * sd * foi_eu_0v2 - delta3_eu * Sneu0v2 
     
     #Exposed
     
-    dEcu1v2  =  Spcu0v2 * sd * foi_cu_0v2 + Sncu0v2 * sd * foi_cu_0v2 -  sigma * Ecu1v2  - delta3_cu *
+    dEcu1v2  =  Sncu0v2 * sd * foi_cu_0v2 -  sigma * Ecu1v2  - delta3_cu *
       Ecu1v2 + delta2_cu * Ecu1v1
     
-    dEau1v2  =  Spau0v2 * sd * foi_au_0v2 + Snau0v2 * sd * foi_au_0v2 -  sigma * Eau1v2  - delta3_au *
+    dEau1v2  =   Snau0v2 * sd * foi_au_0v2 -  sigma * Eau1v2  - delta3_au *
       Eau1v2 + delta2_au * Eau1v1
     
-    dEeu1v2  =  Speu0v2 * sd * foi_eu_0v2 + Sneu0v2 * sd * foi_eu_0v2 -  sigma * Eeu1v2  - delta3_eu *
+    dEeu1v2  =   Sneu0v2 * sd * foi_eu_0v2 -  sigma * Eeu1v2  - delta3_eu *
       Eeu1v2 + delta2_eu * Eeu1v1
     
     # Asymptomatic
@@ -775,17 +769,17 @@ COVID_sero_vax <- function(t, start, params) {
     #Recovered and not seropositive
     
     dRncu1v2  =  (1 - pi) * (1 - phi_cv2) * gamma_I * Icu1v2 + (1 - pi) *
-      gamma_A * Acu1v2 + (1 - pi) * (1 - mu_c) * gamma_H * Hcu1v2 + kappa3 * Rpcu1v2 - omega_nc *
+      gamma_A * Acu1v2 + (1 - pi) * (1 - mu_c) * gamma_H * Hcu1v2  - omega_nc *
       Rncu1v2 - delta3_cu * Rncu1v2 + delta2_cu * Rncu1v1 * (1 - rho_v2) + delta2_cu *
       Sncu1v1 * (1 - rho_v2)
     
     dRnau1v2  =  (1 - pi) * (1 - phi_av2) * gamma_I * Iau1v2 + (1 - pi) *
-      gamma_A * Aau1v2 + (1 - pi) * (1 - mu_a) * gamma_H * Hau1v2 + kappa3 * Rpau1v2 - omega_na *
+      gamma_A * Aau1v2 + (1 - pi) * (1 - mu_a) * gamma_H * Hau1v2  - omega_na *
       Rnau1v2 - delta3_au * Rnau1v2 + delta2_au * Rnau1v1 * (1 - rho_v2) + delta2_au *
       Snau1v1 * (1 - rho_v2)
     
     dRneu1v2  =  (1 - pi) * (1 - phi_ev2) * gamma_I * Ieu1v2 + (1 - pi) *
-      gamma_A * Aeu1v2 + (1 - pi) * (1 - mu_e) * gamma_H * Heu1v2 + kappa3 * Rpeu1v2 - omega_ne *
+      gamma_A * Aeu1v2 + (1 - pi) * (1 - mu_e) * gamma_H * Heu1v2  - omega_ne *
       Rneu1v2 - delta3_eu * Rneu1v2 + delta2_eu * Rneu1v1 * (1 - rho_v2) + delta2_eu *
       Sneu1v1 * (1 - rho_v2)
     
@@ -803,14 +797,11 @@ COVID_sero_vax <- function(t, start, params) {
    
     
     
-    dSncu1v2  = omega_nc * Rncu1v2 + kappa3 * Spcu1v2 - Sncu1v2 * sd * foi_cu_1v2 - delta3_cu * Sncu1v2 +
-      omega3_nc * Sncu1v3
+    dSncu1v2  = omega_nc * Rncu1v2  - Sncu1v2 * sd * foi_cu_1v2 - delta3_cu * Sncu1v2 
     
-    dSnau1v2  = omega_na * Rnau1v2 + kappa3 * Spau1v2 - Snau1v2 * sd * foi_au_1v2 - delta3_au * Snau1v2 +
-      omega3_na * Snau1v3 + omega4_na * Snau2v2
+    dSnau1v2  = omega_na * Rnau1v2  - Snau1v2 * sd * foi_au_1v2 - delta3_au * Snau1v2  + omega4_na * Snau2v2
     
-    dSneu1v2  = omega_ne * Rneu1v2 + kappa3 * Speu1v2 - Sneu1v2 * sd * foi_eu_1v2 - delta3_eu * Sneu1v2 +
-      omega3_ne * Sneu1v3 + omega4_ne * Sneu2v2
+    dSneu1v2  = omega_ne * Rneu1v2 - Sneu1v2 * sd * foi_eu_1v2 - delta3_eu * Sneu1v2 + omega4_ne * Sneu2v2
     
     #Exposed
     
