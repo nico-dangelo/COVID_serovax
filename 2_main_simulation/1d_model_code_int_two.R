@@ -332,7 +332,7 @@ COVID_sero_vax <- function(t, start, params) {
     ) +
       (
         CM[5, 6] * (
-          Iau1v0 + Iau2v0 + Iau3v0 + Iau1v1 + Iau2v1  + Iau1v2 + Iau2v2 + alpha * (
+          Iau1v0 + Iau2v0  + Iau1v1 + Iau2v1  + Iau1v2 + Iau2v2 + alpha * (
               Aau1v0 + Aau2v0 + Aau1v1 + Aau2v1  + Aau1v2 + Aau2v2 
             )
         ) / Nadultu
@@ -346,66 +346,66 @@ COVID_sero_vax <- function(t, start, params) {
       ))
     
     
-    foi_cu_0v1 = foi_cu_0v0 * (1 - vei1) * imm_esc_factor
+    foi_cu_0v1 = foi_cu_0v0 * (1 - vei1) #* imm_esc_factor
     
-    foi_au_0v1 = foi_au_0v0 * (1 - vei1) * imm_esc_factor
+    foi_au_0v1 = foi_au_0v0 * (1 - vei1) #* imm_esc_factor
     
-    foi_eu_0v1 = foi_eu_0v0 * (1 - vei1) * imm_esc_factor
+    foi_eu_0v1 = foi_eu_0v0 * (1 - vei1) #* imm_esc_factor
     
     
-    foi_cu_0v2 = foi_cu_0v0 * (1 - vei2) * imm_esc_factor
+    foi_cu_0v2 = foi_cu_0v0 * (1 - vei2) #* imm_esc_factor
     
-    foi_au_0v2 = foi_au_0v0 * (1 - vei2) * imm_esc_factor
+    foi_au_0v2 = foi_au_0v0 * (1 - vei2) #* imm_esc_factor
     
-    foi_eu_0v2 = foi_eu_0v0 * (1 - vei2) * imm_esc_factor
+    foi_eu_0v2 = foi_eu_0v0 * (1 - vei2) #* imm_esc_factor
     
     
     
     ### After first exposure
     
-    foi_cu_1v0 = foi_cu_0v0 * red_inf_1 * imm_esc_factor * 0.7
+    foi_cu_1v0 = foi_cu_0v0 * red_inf_1 #* imm_esc_factor * 0.7
     
-    foi_au_1v0 = foi_au_0v0 * red_inf_1 * imm_esc_factor
+    foi_au_1v0 = foi_au_0v0 * red_inf_1 #* imm_esc_factor
     
-    foi_eu_1v0 = foi_eu_0v0 * red_inf_1 * imm_esc_factor
-    
-    
-    foi_cu_1v1 = foi_cu_0v1 * red_inf_1 * imm_esc_factor
-    
-    foi_au_1v1 = foi_au_0v1 * red_inf_1 * imm_esc_factor
-    
-    foi_eu_1v1 = foi_eu_0v1 * red_inf_1 * imm_esc_factor
+    foi_eu_1v0 = foi_eu_0v0 * red_inf_1 #* imm_esc_factor
     
     
-    foi_cu_1v2 = foi_cu_0v2 * red_inf_1 * imm_esc_factor
+    foi_cu_1v1 = foi_cu_0v1 * red_inf_1 #* imm_esc_factor
     
-    foi_au_1v2 = foi_au_0v2 * red_inf_1 * imm_esc_factor
+    foi_au_1v1 = foi_au_0v1 * red_inf_1 #* imm_esc_factor
     
-    foi_eu_1v2 = foi_eu_0v2 * red_inf_1 * imm_esc_factor
+    foi_eu_1v1 = foi_eu_0v1 * red_inf_1 #* imm_esc_factor
+    
+    
+    foi_cu_1v2 = foi_cu_0v2 * red_inf_1 #* imm_esc_factor
+    
+    foi_au_1v2 = foi_au_0v2 * red_inf_1 #* imm_esc_factor
+    
+    foi_eu_1v2 = foi_eu_0v2 * red_inf_1 #* imm_esc_factor
     
     
     
     ### After second exposure
     
-    foi_cu_2v0 = foi_cu_0v0 * red_inf_2 * imm_esc_factor * 0.7
+    foi_cu_2v0 = foi_cu_0v0 * red_inf_2 #* imm_esc_factor * 0.7
     
-    foi_au_2v0 = foi_au_0v0 * red_inf_2 * imm_esc_factor
+    foi_au_2v0 = foi_au_0v0 * red_inf_2 #* imm_esc_factor
     
-    foi_eu_2v0 = foi_eu_0v0 * red_inf_2 * imm_esc_factor
-    
-    
-    foi_cu_2v1 = foi_cu_0v1 * red_inf_2 * imm_esc_factor
-    
-    foi_au_2v1 = foi_au_0v1 * red_inf_2 * imm_esc_factor
-    
-    foi_eu_2v1 = foi_eu_0v1 * red_inf_2 * imm_esc_factor
+    foi_eu_2v0 = foi_eu_0v0 * red_inf_2 #* imm_esc_factor
     
     
-    foi_cu_2v2 = foi_cu_0v2 * red_inf_2 * imm_esc_factor
+    foi_cu_2v1 = foi_cu_0v1 * red_inf_2 #* imm_esc_factor
     
-    foi_au_2v2 = foi_au_0v2 * red_inf_2 * imm_esc_factor
+    foi_au_2v1 = foi_au_0v1 * red_inf_2 #* imm_esc_factor
     
-    foi_eu_2v2 = foi_eu_0v2 * red_inf_2 * imm_esc_factor
+    foi_eu_2v1 = foi_eu_0v1 * red_inf_2 #* imm_esc_factor
+    
+    
+    foi_cu_2v2 = foi_cu_0v2 * red_inf_2 #* imm_esc_factor
+    
+    foi_au_2v2 = foi_au_0v2 * red_inf_2 #* imm_esc_factor
+    
+    foi_eu_2v2 = foi_eu_0v2 * red_inf_2 #* imm_esc_factor
     
     ################################
     ##Unvaccinated and unexposed####
