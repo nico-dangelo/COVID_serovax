@@ -485,8 +485,7 @@ COVID_sero_vax <- function(t, start, params) {
    
     
     ##Note vaccination rate here doesnt differ by previous vax status
-    dSncu1v0  = omega_nc * Rncu1v0  - Sncu1v0 * sd * foi_cu_1v0 - delta1_cu * Sncu1v0 + omega4_nc *
-      Sncu2v0
+    dSncu1v0  = omega_nc * Rncu1v0  - Sncu1v0 * sd * foi_cu_1v0 - delta1_cu * Sncu1v0 
     
     dSnau1v0  = omega_na * Rnau1v0  - Snau1v0 * sd * foi_au_1v0 - delta1_au * Snau1v0
     
@@ -799,9 +798,9 @@ COVID_sero_vax <- function(t, start, params) {
     
     dSncu1v2  = omega_nc * Rncu1v2  - Sncu1v2 * sd * foi_cu_1v2 - delta3_cu * Sncu1v2 
     
-    dSnau1v2  = omega_na * Rnau1v2  - Snau1v2 * sd * foi_au_1v2 - delta3_au * Snau1v2  + omega4_na * Snau2v2
+    dSnau1v2  = omega_na * Rnau1v2  - Snau1v2 * sd * foi_au_1v2 - delta3_au * Snau1v2  
     
-    dSneu1v2  = omega_ne * Rneu1v2 - Sneu1v2 * sd * foi_eu_1v2 - delta3_eu * Sneu1v2 + omega4_ne * Sneu2v2
+    dSneu1v2  = omega_ne * Rneu1v2 - Sneu1v2 * sd * foi_eu_1v2 - delta3_eu * Sneu1v2 
     
     #Exposed
     
