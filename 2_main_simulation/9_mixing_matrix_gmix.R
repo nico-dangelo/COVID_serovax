@@ -15,27 +15,28 @@ CM_u <- matrix(c(4.369811, 3.579099, 3.581121,
                nrow = 3,
                dimnames = list(x=c("0-17","18-49","50+"), y=c("0-17","18-49","50+")))
 
-CM_r <- matrix(c(5.718741, 3.954180, 4.162091,
-                 2.971730, 4.720997, 5.519682,
-                 0.7622381,1.3450557,2.2524737), 
-               nrow = 3, 
-               dimnames = list(x=c("0-17","18-49","50+"), y=c("0-17","18-49","50+")))
+# CM_r <- matrix(c(5.718741, 3.954180, 4.162091,
+#                  2.971730, 4.720997, 5.519682,
+#                  0.7622381,1.3450557,2.2524737), 
+#                nrow = 3, 
+#                dimnames = list(x=c("0-17","18-49","50+"), y=c("0-17","18-49","50+")))
 
 
 
 ## Travel probabilities
-p_ru <- 0.05 # Prop of urban contact made by rural people/all contacts made by rural
-p_ur <- 0.01 # Prop of rural contact made by urban people/all contacts made by urban
+#p_ru <- 0.05 # Prop of urban contact made by rural people/all contacts made by rural
+#p_ur <- 0.01 # Prop of rural contact made by urban people/all contacts made by urban
 #p_ru <- 0.008 # Daily prob of urban contact made by rural people/all contacts made by rural
 #p_ur <- 0.005 # Daily ptob of rural contact made by urban people/all contacts made by urban
 #Attempt to create a 6x6 matrix incorporating a dimension of urban/rural
 
-CM_rr <- (1-p_ru)*CM_r
-CM_ru <- (p_ru)*CM_r
-CM_uu <- (1-p_ur)*CM_u
-CM_ur <- p_ur*CM_u
+# CM_rr <- (1-p_ru)*CM_r
+# CM_ru <- (p_ru)*CM_r
+# CM_uu <- (1-p_ur)*CM_u
+# CM_ur <- p_ur*CM_u
 
-CM <- cbind(rbind(CM_rr, CM_ur), rbind(CM_ru,CM_uu))
+# CM <- cbind(rbind(CM_rr, CM_ur), rbind(CM_ru,CM_uu))
+CM<-CM_u
 colnames(CM) <- c("Rural 0-17","Rural 18-49","Rural 50+","Urban 0-17","Urban 18-49","Urban 50+")
 rownames(CM) <-c("Rural 0-17","Rural 18-49","Rural 50+","Urban 0-17","Urban 18-49","Urban 50+")
 
