@@ -37,19 +37,20 @@ CM_u <- matrix(c(4.369811, 3.579099, 3.581121,
 
 # CM <- cbind(rbind(CM_rr, CM_ur), rbind(CM_ru,CM_uu))
 CM<-CM_u
-colnames(CM) <- c("Rural 0-17","Rural 18-49","Rural 50+","Urban 0-17","Urban 18-49","Urban 50+")
-rownames(CM) <-c("Rural 0-17","Rural 18-49","Rural 50+","Urban 0-17","Urban 18-49","Urban 50+")
-
+# colnames(CM) <- c("Rural 0-17","Rural 18-49","Rural 50+","Urban 0-17","Urban 18-49","Urban 50+")
+# rownames(CM) <-c("Rural 0-17","Rural 18-49","Rural 50+","Urban 0-17","Urban 18-49","Urban 50+")
+# colnames(CM) <- c("Urban 0-17","Urban 18-49","Urban 50+")
+# rownames(CM) <-c("Urban 0-17","Urban 18-49","Urban 50+")
 
 ##Visualize the matrix
-
-theme<-theme_classic()+
-  theme(plot.title = element_text(hjust=0.5, face="bold",size=12),
-        axis.title.x=element_text(size=12),
-        axis.title.y=element_text(size=12),
-        panel.border=element_blank(),
-        axis.text=element_text(size=11),
-        axis.text.x=element_text(angle=45,hjust=1))
+# library(ggplot2)
+# theme<-theme_classic()+
+#   theme(plot.title = element_text(hjust=0.5, face="bold",size=12),
+#         axis.title.x=element_text(size=12),
+#         axis.title.y=element_text(size=12),
+#         panel.border=element_blank(),
+#         axis.text=element_text(size=11),
+#         axis.text.x=element_text(angle=45,hjust=1))
 
 #png("code/figs/contact_matrix.png",width = 9,height = 7,units="in",res=200)
 #as.data.frame(CM) %>%
