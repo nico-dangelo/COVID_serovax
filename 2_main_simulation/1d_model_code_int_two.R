@@ -282,80 +282,65 @@ COVID_sero_vax <- function(t, start, params) {
       CM[4, 4] * (
         Icu1v0 + Icu2v0  + Icu1v1 + Icu2v1  + Icu1v2 + Icu2v2 +
            alpha * (
-            Acu1v0 + Acu2v0  + Acu1v1 + Acu2v1 + Acu1v2 + Acu2v2 )
+            Acu1v0 + Acu2v0  + Acu1v1 + Acu2v1 + Acu1v2 + Acu2v2 
+            )
       ) / Nchildu
     ) +
       (
         CM[5, 4] * (
-          Iau1v0 + Iau2v0  + Iau1v1 + Iau2v1 + Iau3v1 + Iau1v2 + Iau2v2 +
-            Iau3v2 + Iau1v3 + Iau2v3 + Iau3v3 + alpha * (
-              Aau1v0 + Aau2v0 + Aau3v0 + Aau1v1 + Aau2v1 + Aau3v1 + Aau1v2 + Aau2v2 +
-                Aau3v2 + Aau1v3 + Aau2v3 + Aau3v3
+          Iau1v0 + Iau2v0  + Iau1v1 + Iau2v1  + Iau1v2 + Iau2v2  + alpha * (
+              Aau1v0 + Aau2v0 + Aau1v1 + Aau2v1 + Aau1v2 + Aau2v2 
             )
         ) / Nadultu
       ) +
       (
         CM[6, 4] * (
-          Ieu1v0 + Ieu2v0 + Ieu3v0 + Ieu1v1 + Ieu2v1 + Ieu3v1 + Ieu1v2 + Ieu2v2 +
-            Ieu3v2 + Ieu1v3 + Ieu2v3 + Ieu3v3 + alpha * (
-              Aeu1v0 + Aeu2v0 + Aeu3v0 + Aeu1v1 + Aeu2v1 + Aeu3v1 + Aeu1v2 + Aeu2v2 +
-                Aeu3v2 + Aeu1v3 + Aeu2v3 + Aeu3v3
+          Ieu1v0 + Ieu2v0  + Ieu1v1 + Ieu2v1  + Ieu1v2 + Ieu2v2  + alpha * (
+              Aeu1v0 + Aeu2v0  + Aeu1v1 + Aeu2v1 + Aeu1v2 + Aeu2v2 
             )
         ) / Noldu
       ))
     
     foi_au_0v0 = beta_a * ((
       CM[4, 5] * (
-        Icu1v0 + Icu2v0 + Icu3v0 + Icu1v1 + Icu2v1 + Icu3v1 + Icu1v2 + Icu2v2 +
-          Icu3v2 + Icu1v3 + Icu2v3 + Icu3v3 + alpha * (
-            Acu1v0 + Acu2v0 + Acu3v0 + Acu1v1 + Acu2v1 + Acu3v1 + Acu1v2 + Acu2v2 +
-              Acu3v2 + Acu1v3 + Acu2v3 + Acu3v3
+        Icu1v0 + Icu2v0 + Icu1v1 + Icu2v1  + Icu1v2 + Icu2v2  + alpha * (
+            Acu1v0 + Acu2v0  + Acu1v1 + Acu2v1  + Acu1v2 + Acu2v2 
           )
       ) / Nchildu
     ) +
       (
         CM[5, 5] * (
-          Iau1v0 + Iau2v0 + Iau3v0 + Iau1v1 + Iau2v1 + Iau3v1 + Iau1v2 + Iau2v2 +
-            Iau3v2 + Iau1v3 + Iau2v3 + Iau3v3 + alpha * (
-              Aau1v0 + Aau2v0 + Aau3v0 + Aau1v1 + Aau2v1 + Aau3v1 + Aau1v2 + Aau2v2 +
-                Aau3v2 + Aau1v3 + Aau2v3 + Aau3v3
+          Iau1v0 + Iau2v0  + Iau1v1 + Iau2v1  + Iau1v2 + Iau2v2  + alpha * (
+              Aau1v0 + Aau2v0  + Aau1v1 + Aau2v1 + Aau1v2 + Aau2v2 
             )
         ) / Nadultu
       ) +
       (
         CM[6, 5] * (
-          Ieu1v0 + Ieu2v0 + Ieu3v0 + Ieu1v1 + Ieu2v1 + Ieu3v1 + Ieu1v2 + Ieu2v2 +
-            Ieu3v2 + Ieu1v3 + Ieu2v3 + Ieu3v3 + alpha * (
-              Aeu1v0 + Aeu2v0 + Aeu3v0 + Aeu1v1 + Aeu2v1 + Aeu3v1 + Aeu1v2 + Aeu2v2 +
-                Aeu3v2 + Aeu1v3 + Aeu2v3 + Aeu3v3
+          Ieu1v0 + Ieu2v0  + Ieu1v1 + Ieu2v1 + Ieu1v2 + Ieu2v2  + alpha * (
+              Aeu1v0 + Aeu2v0  + Aeu1v1 + Aeu2v1  + Aeu1v2 + Aeu2v2 
             )
         ) / Noldu
       ))
     
     foi_eu_0v0 = beta_e *  ((
       CM[4, 6] * (
-        Icu1v0 + Icu2v0 + Icu3v0 + Icu1v1 + Icu2v1 + Icu3v1 + Icu1v2 + Icu2v2 +
-          Icu3v2 + Icu1v3 + Icu2v3 + Icu3v3 + alpha * (
-            Acu1v0 + Acu2v0 + Acu3v0 + Acu1v1 + Acu2v1 + Acu3v1 + Acu1v2 + Acu2v2 +
-              Acu3v2 + Acu1v3 + Acu2v3 + Acu3v3
+        Icu1v0 + Icu2v0  + Icu1v1 + Icu2v1  + Icu1v2 + Icu2v2  + alpha * (
+            Acu1v0 + Acu2v0  + Acu1v1 + Acu2v1  + Acu1v2 + Acu2v2 
           )
       ) / Nchildu
     ) +
       (
         CM[5, 6] * (
-          Iau1v0 + Iau2v0 + Iau3v0 + Iau1v1 + Iau2v1 + Iau3v1 + Iau1v2 + Iau2v2 +
-            Iau3v2 + Iau1v3 + Iau2v3 + Iau3v3 + alpha * (
-              Aau1v0 + Aau2v0 + Aau3v0 + Aau1v1 + Aau2v1 + Aau3v1 + Aau1v2 + Aau2v2 +
-                Aau3v2 + Aau1v3 + Aau2v3 + Aau3v3
+          Iau1v0 + Iau2v0 + Iau3v0 + Iau1v1 + Iau2v1  + Iau1v2 + Iau2v2 + alpha * (
+              Aau1v0 + Aau2v0 + Aau1v1 + Aau2v1  + Aau1v2 + Aau2v2 
             )
         ) / Nadultu
       ) +
       (
         CM[6, 6] * (
-          Ieu1v0 + Ieu2v0 + Ieu3v0 + Ieu1v1 + Ieu2v1 + Ieu3v1 + Ieu1v2 + Ieu2v2 +
-            Ieu3v2 + Ieu1v3 + Ieu2v3 + Ieu3v3 + alpha * (
-              Aeu1v0 + Aeu2v0 + Aeu3v0 + Aeu1v1 + Aeu2v1 + Aeu3v1 + Aeu1v2 + Aeu2v2 +
-                Aeu3v2 + Aeu1v3 + Aeu2v3 + Aeu3v3
+          Ieu1v0 + Ieu2v0  + Ieu1v1 + Ieu2v1  + Ieu1v2 + Ieu2v2  + alpha * (
+              Aeu1v0 + Aeu2v0  + Aeu1v1 + Aeu2v1 + Aeu3v1 + Aeu1v2 + Aeu2v2 
             )
         ) / Noldu
       ))
