@@ -170,7 +170,7 @@ model_sims <- function(i){
   
   ## Waning immunity after infection
   ##Among seropositives
-  # omega_pc <- sweep$omega_pc[i]
+   omega_pc <- sweep$omega_pc[i]
   # omega_pa <- omega_pc
   # omega_pe <- omega_pc
   
@@ -288,20 +288,20 @@ model_sims <- function(i){
   
   
   mod_inc <- model_out %>% select(time| contains("Ecum")|contains("Icum")) %>% mutate(
-    Ecum_cr = rowSums(select(.,contains("Ecum")&(contains("_cr")))),
+   
     Ecum_cu = rowSums(select(.,contains("Ecum")&(contains("_cu")))),
-    Ecum_ar = rowSums(select(.,contains("Ecum")&(contains("_ar")))),
+   
     Ecum_au = rowSums(select(.,contains("Ecum")&(contains("_au")))),
-    Ecum_er = rowSums(select(.,contains("Ecum")&(contains("_er")))),
+   
     Ecum_eu = rowSums(select(.,contains("Ecum")&(contains("_eu")))),
     
-    Ecum_c = Ecum_cr+Ecum_cu,
-    Ecum_a = Ecum_ar+Ecum_au,
-    Ecum_e = Ecum_er+Ecum_eu,
+    Ecum_c = Ecum_cu,
+    Ecum_a = Ecum_au,
+    Ecum_e = Ecum_eu,
     
-    Icum_c = rowSums(select(.,contains("Icum")&(contains("_cu")|contains("_cr")))),
-    Icum_a = rowSums(select(.,contains("Icum")&(contains("_au")|contains("_ar")))),
-    Icum_e = rowSums(select(.,contains("Icum")&(contains("_eu")|contains("_er")))),
+    Icum_c = rowSums(select(.,contains("Icum")&(contains("_cu")))),
+    Icum_a = rowSums(select(.,contains("Icum")&(contains("_au")))),
+    Icum_e = rowSums(select(.,contains("Icum")&(contains("_eu")))),
     
     new_E_c = Ecum_c - lag(Ecum_c),          
     new_E_a = Ecum_a - lag(Ecum_a),
@@ -326,13 +326,13 @@ model_sims <- function(i){
   ## Population totals and deaths
   pop_num <- model_out %>% mutate(
     
-    Nchildr = rowSums(select(.,contains('cr')&(-starts_with("D")))),    ## Total in the population (exclude deaths)
+       ## Total in the population (exclude deaths)
     Nchildu = rowSums(select(.,contains('cu')&(-starts_with("D")))),
-    Nadultr = rowSums(select(.,contains('ar')&(-starts_with("D")))),
+    
     Nadultu = rowSums(select(.,contains('au')&(-starts_with("D")))),
-    Noldr =   rowSums(select(.,contains('er')&(-starts_with("D")))),
+   
     Noldu =   rowSums(select(.,contains('eu')&(-starts_with("D")))),
-    NTot = Nchildr + Nchildu +Nadultr +Nadultu +Noldr+Noldu,           ## Total alive in compartments
+    NTot =  Nchildu  +Nadultu +Noldu,           ## Total alive in compartments
     
     
     Deaths_c = rowSums(select(.,contains('Dc'))),
@@ -354,19 +354,19 @@ model_sims <- function(i){
     
     mutate(
     
-    SpRp_cr = rowSums(select(., contains('cr')& (contains('Sp')|contains('Rp')|contains('Vp')))),
+    
     SpRp_cu = rowSums(select(., contains('cu')& (contains('Sp')|contains('Rp')|contains('Vp')))),
-    SpRp_ar = rowSums(select(., contains('ar')& (contains('Sp')|contains('Rp')|contains('Vp')))),
+    
     SpRp_au = rowSums(select(., contains('au')& (contains('Sp')|contains('Rp')|contains('Vp')))),
-    SpRp_er = rowSums(select(., contains('er')& (contains('Sp')|contains('Rp')|contains('Vp')))),
+    
     SpRp_eu = rowSums(select(., contains('eu')& (contains('Sp')|contains('Rp')|contains('Vp')))),
     
     
-    active_cr = rowSums(select(.,(contains('Ecr')|contains('Acr')|contains('Icr')|contains('Hcr')), -ends_with('1v0'))),
+   
     active_cu = rowSums(select(.,(contains('Ecu')|contains('Acu')|contains('Icu')|contains('Hcu')), -ends_with('1v0'))),
-    active_ar = rowSums(select(.,(contains('Ear')|contains('Aar')|contains('Iar')|contains('Har')), -ends_with('1v0'))),
+   
     active_au = rowSums(select(.,(contains('Eau')|contains('Aau')|contains('Iau')|contains('Hau')), -ends_with('1v0'))),
-    active_er = rowSums(select(.,(contains('Eer')|contains('Aer')|contains('Ier')|contains('Her')), -ends_with('1v0'))),
+    
     active_eu = rowSums(select(.,(contains('Eeu')|contains('Aeu')|contains('Ieu')|contains('Heu')), -ends_with('1v0'))),
     
     seropos_cr = SpRp_cr + active_cr,
