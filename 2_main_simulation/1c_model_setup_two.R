@@ -122,6 +122,9 @@ model_sims <- function(i){
   # vei3<-0.7 ## VE against infection
   # vep3<-0.9 ## VE against hospitalization
   
+
+  
+  
   
   ##Natural history parameters
   sigma <- 1/5.5  #latent period
@@ -170,7 +173,7 @@ model_sims <- function(i){
   
   ## Waning immunity after infection
   ##Among seropositives
-   omega_pc <- sweep$omega_pc[i]
+  omega_pc <- sweep$omega_pc[i]
   # omega_pa <- omega_pc
   # omega_pe <- omega_pc
   
@@ -184,7 +187,13 @@ model_sims <- function(i){
   # omegav_pa <- omegav_pc
   # omegav_pe <- omegav_pc
 
-  omegav_nc <- omega_pc
+  # omegav_nc <- omega_pc
+  #duration of first dose immunity
+  m_1 <- 14
+  m_2 <- m_1
+ for(t in seq_along(0:m_1)){
+   omegav_nc <- (t-m)^8+vei1   
+  }
   omegav_na <- omegav_nc
   omegav_ne <- omegav_nc
 
@@ -350,50 +359,50 @@ model_sims <- function(i){
     select(time, Nchildr:new_Deaths_tot)
   
   
-  seroprev<- model_out %>% left_join(pop_num%>%select(time,Nchildr:NTot), by= "time")%>%
-    
-    mutate(
-    
-    
-    SpRp_cu = rowSums(select(., contains('cu')& (contains('Sp')|contains('Rp')|contains('Vp')))),
-    
-    SpRp_au = rowSums(select(., contains('au')& (contains('Sp')|contains('Rp')|contains('Vp')))),
-    
-    SpRp_eu = rowSums(select(., contains('eu')& (contains('Sp')|contains('Rp')|contains('Vp')))),
-    
-    
-   
-    active_cu = rowSums(select(.,(contains('Ecu')|contains('Acu')|contains('Icu')|contains('Hcu')), -ends_with('1v0'))),
-   
-    active_au = rowSums(select(.,(contains('Eau')|contains('Aau')|contains('Iau')|contains('Hau')), -ends_with('1v0'))),
-    
-    active_eu = rowSums(select(.,(contains('Eeu')|contains('Aeu')|contains('Ieu')|contains('Heu')), -ends_with('1v0'))),
-    
-    seropos_cr = SpRp_cr + active_cr,
-    seropos_cu = SpRp_cu + active_cu,
-    seropos_ar = SpRp_ar + active_ar,
-    seropos_au = SpRp_au + active_au,
-    seropos_er = SpRp_er + active_er,
-    seropos_eu = SpRp_eu + active_eu,
-    
-    seroprev_cr = seropos_cr/Nchildr,
-    seroprev_cu = seropos_cu/Nchildu,
-    seroprev_ar = seropos_ar/Nadultr,
-    seroprev_au = seropos_au/Nadultu,
-    seroprev_er = seropos_er/Noldr,
-    seroprev_eu = seropos_eu/Noldu,
-    
-    seroprev_c = (seropos_cr+seropos_cu)/(Nchildr+Nchildu),
-    seroprev_a = (seropos_ar+seropos_au)/(Nadultr+Nadultu),
-    seroprev_e = (seropos_er+seropos_eu)/(Noldr+Noldu),
-    
-    seroprev_ul = (seropos_cu+seropos_au+seropos_eu)/(Nchildu+Nadultu+Noldu),
-    seroprev_rl = (seropos_cr+seropos_ar+seropos_er)/(Nchildr+Nadultr+Noldr),
-    
-    seroprev_to = (seropos_cr+seropos_cu+seropos_ar+seropos_au+seropos_er+seropos_eu)/(NTot))%>%
-    select(time,seroprev_cr:seroprev_to)
-
-  
+  # seroprev<- model_out %>% left_join(pop_num%>%select(time,Nchildr:NTot), by= "time")%>%
+  #   
+  #   mutate(
+  #   
+  #   
+  #   SpRp_cu = rowSums(select(., contains('cu')& (contains('Sp')|contains('Rp')|contains('Vp')))),
+  #   
+  #   SpRp_au = rowSums(select(., contains('au')& (contains('Sp')|contains('Rp')|contains('Vp')))),
+  #   
+  #   SpRp_eu = rowSums(select(., contains('eu')& (contains('Sp')|contains('Rp')|contains('Vp')))),
+  #   
+  #   
+  #  
+  #   active_cu = rowSums(select(.,(contains('Ecu')|contains('Acu')|contains('Icu')|contains('Hcu')), -ends_with('1v0'))),
+  #  
+  #   active_au = rowSums(select(.,(contains('Eau')|contains('Aau')|contains('Iau')|contains('Hau')), -ends_with('1v0'))),
+  #   
+  #   active_eu = rowSums(select(.,(contains('Eeu')|contains('Aeu')|contains('Ieu')|contains('Heu')), -ends_with('1v0'))),
+  #   
+  #   seropos_cr = SpRp_cr + active_cr,
+  #   seropos_cu = SpRp_cu + active_cu,
+  #   seropos_ar = SpRp_ar + active_ar,
+  #   seropos_au = SpRp_au + active_au,
+  #   seropos_er = SpRp_er + active_er,
+  #   seropos_eu = SpRp_eu + active_eu,
+  #   
+  #   seroprev_cr = seropos_cr/Nchildr,
+  #   seroprev_cu = seropos_cu/Nchildu,
+  #   seroprev_ar = seropos_ar/Nadultr,
+  #   seroprev_au = seropos_au/Nadultu,
+  #   seroprev_er = seropos_er/Noldr,
+  #   seroprev_eu = seropos_eu/Noldu,
+  #   
+  #   seroprev_c = (seropos_cr+seropos_cu)/(Nchildr+Nchildu),
+  #   seroprev_a = (seropos_ar+seropos_au)/(Nadultr+Nadultu),
+  #   seroprev_e = (seropos_er+seropos_eu)/(Noldr+Noldu),
+  #   
+  #   seroprev_ul = (seropos_cu+seropos_au+seropos_eu)/(Nchildu+Nadultu+Noldu),
+  #   seroprev_rl = (seropos_cr+seropos_ar+seropos_er)/(Nchildr+Nadultr+Noldr),
+  #   
+  #   seroprev_to = (seropos_cr+seropos_cu+seropos_ar+seropos_au+seropos_er+seropos_eu)/(NTot))%>%
+  #   select(time,seroprev_cr:seroprev_to)
+  # 
+  # 
   vax_dist <- model_out%>% mutate(
     V0cum_c = rowSums(select(.,contains("v0")&(contains("cr")|contains("cu"))&(-starts_with("D")))),
     V1cum_c = rowSums(select(.,contains("v1")&(contains("cr")|contains("cu"))&(-starts_with("D")))),
