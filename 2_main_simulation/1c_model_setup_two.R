@@ -117,8 +117,9 @@ model_sims <- function(i){
   ## Vaccine parameters
   vei1<-0.50 ## VE against infection
   vep1<-0.40 ## VE against hospitalization
-  vei2<-0.60 ## VE against infection 
-  vep2<-0.67 ## VE against hospitalization
+  # vei2<-0.60 ## VE against infection 
+  # vep2<-0.67 ## VE against hospitalization
+  
   # vei3<-0.7 ## VE against infection
   # vep3<-0.9 ## VE against hospitalization
   
@@ -183,19 +184,15 @@ model_sims <- function(i){
   omega_ne <- omega_nc
   
   ##Waning immunity after vaccination
-  # omegav_pc <- omega_pc
-  # omegav_pa <- omegav_pc
-  # omegav_pe <- omegav_pc
+  omegav_pc <- omega_pc
+  omegav_pa <- omegav_pc
+  omegav_pe <- omegav_pc
 
-  # omegav_nc <- omega_pc
-  #duration of first dose immunity
-  m_1 <- 14
-  m_2 <- m_1
- for(t in seq_along(0:m_1)){
-   omegav_nc <- (t-m)^8+vei1   
-  }
+  omegav_nc <- omega_pc
   omegav_na <- omegav_nc
   omegav_ne <- omegav_nc
+
+
 
   ## After third infection (two prior exposure class), wane from R3 to S2
   # omega2_pc <-sweep$omega2_pc[i]

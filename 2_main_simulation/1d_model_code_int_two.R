@@ -6,7 +6,7 @@ source("9_mixing_matrix_gmix.R")
 ## The subscripts denote the number of times someone as been exposed through either infection or vaccination
 COVID_sero_vax <- function(t, start, params) {
   with(as.list(c(start, params)), {
-    sd <- input(t)
+    #sd <- input(t)
     # Derived variables
     
     
@@ -307,6 +307,7 @@ COVID_sero_vax <- function(t, start, params) {
     
     foi_eu_0v1 = foi_eu_0v0 * (1 - vei1)
     
+   
     
     foi_cu_0v2 = foi_cu_0v0 * (1 - vei2)
     
