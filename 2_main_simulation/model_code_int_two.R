@@ -939,13 +939,13 @@ COVID_sero_vax <- function(t, start, params) {
     
     ##Seronegative
     
-    dVncu0v2 = delta2_cu * Sncu0v1 + delta2_cu * Vncu0v1 + kappa2 * Vpcu0v2  - omegav_nc *
+    dVncu0v2 = delta2_cu * Sncu0v1 + delta2_cu * Vncu0v1  - omegav_nc *
       Vncu0v2
     
-    dVnau0v2 = delta2_au * Snau0v1 + delta2_au * Vnau0v1 + kappa2 * Vpau0v2  - omegav_na *
+    dVnau0v2 = delta2_au * Snau0v1 + delta2_au * Vnau0v1   - omegav_na *
       Vnau0v2
     
-    dVneu0v2 = delta2_eu * Sneu0v1 + delta2_eu * Vneu0v1 + kappa2 * Vpeu0v2 - omegav_ne *
+    dVneu0v2 = delta2_eu * Sneu0v1 + delta2_eu * Vneu0v1 - omegav_ne *
       Vneu0v2
     
     
