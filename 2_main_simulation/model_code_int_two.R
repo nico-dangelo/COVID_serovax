@@ -1346,7 +1346,7 @@ COVID_sero_vax <- function(t, start, params) {
       
       dVnau0v2,
       
-      dVneu0v2,
+      dVneu0v2
       
       
       
@@ -1386,7 +1386,7 @@ COVID_sero_vax <- function(t, start, params) {
       'foi_eu_2v2' = foi_eu_2v2,
       
       
-      'delta1_cu' = delta1_cu,
+      'delta1_cu' = delta1_cu
       
       
       
