@@ -573,7 +573,7 @@ COVID_sero_vax <- function(t, start, params) {
     dRnau1v1  =   (1 - phi_av1) * gamma_I * Iau1v1 +
       gamma_A * Aau1v1 +  (1 - mu_a) * gamma_H * Hau1v1 - omega_na *
       Rnau1v1 - delta2_au * Rnau1v1 + delta1_au * Rnau1v0  + delta1_au *
-      Snau1v0 * (1 - rho_v1)
+      Snau1v0 
     
     dRneu1v1  =   (1 - phi_ev1) * gamma_I * Ieu1v1 +
       gamma_A * Aeu1v1 +  (1 - mu_e) * gamma_H * Heu1v1  - omega_ne *
@@ -955,7 +955,7 @@ COVID_sero_vax <- function(t, start, params) {
     
     
     
-    vswitch = 1 #switch for swtiching off the vaccination
+    vswitch = 1 #switch for switching off the vaccination
     
     delta1_cu = 0
     
