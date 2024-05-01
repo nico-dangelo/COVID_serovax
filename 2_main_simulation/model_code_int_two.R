@@ -1,7 +1,7 @@
 
 
 
-source("mixing_matrix_gmix.R")
+source("~/COVID_serovax/2_main_simulation/mixing_matrix_gmix.R")
 ## Model flows
 ## The subscripts denote the number of times someone as been exposed through either infection or vaccination
 COVID_sero_vax <- function(t, start, params) {
@@ -17,7 +17,6 @@ COVID_sero_vax <- function(t, start, params) {
                  Acu2v0,
                  Icu2v0,
                  Hcu2v0,
-                 Rpcu2v0,
                  Rncu2v0) #Unvax and one prior
     
     
@@ -554,7 +553,7 @@ COVID_sero_vax <- function(t, start, params) {
     dIeu1v1  =  nu_e * sigma * Eeu1v1 - gamma_I * Ieu1v1
     
     # Hospitalized
-    dHcr1v1  =  phi_cv1 * gamma_I * Icr1v1 - gamma_H * Hcr1v1
+   
     dHcu1v1  =  phi_cv1 * gamma_I * Icu1v1 - gamma_H * Hcu1v1
     
     dHau1v1  =  phi_av1 * gamma_I * Iau1v1 - gamma_H * Hau1v1
@@ -646,18 +645,14 @@ COVID_sero_vax <- function(t, start, params) {
     
     dRncu2v1  =   (1 - phi_cv1) * gamma_I * Icu2v1 +
       gamma_A * Acu2v1 +  (1 - mu_c) * gamma_H * Hcu2v1  - omega_nc *
-      Rncu2v1 - delta2_cu * Rncu2v1 + delta1_cu * Rncu2v0  + delta1_cu *
-      Sncu2v0 
-    
+      Rncu2v1 - delta2_cu * Rncu2v1 + delta1_cu * Rncu2v0  
     dRnau2v1  =   (1 - phi_av1) * gamma_I * Iau2v1 +
       gamma_A * Aau2v1 +  (1 - mu_a) * gamma_H * Hau2v1 - omega_na *
-      Rnau2v1 - delta2_au * Rnau2v1 + delta1_au * Rnau2v0  + delta1_au *
-      Snau2v0 
+      Rnau2v1 - delta2_au * Rnau2v1 + delta1_au * Rnau2v0 
     
     dRneu2v1  =   (1 - phi_ev1) * gamma_I * Ieu2v1 +
       gamma_A * Aeu2v1 +  (1 - mu_e) * gamma_H * Heu2v1  - omega_ne *
-      Rneu2v1 - delta2_eu * Rneu2v1 + delta1_eu * Rneu2v0  + delta1_eu *
-      Sneu2v0 
+      Rneu2v1 - delta2_eu * Rneu2v1 + delta1_eu * Rneu2v0  
     
     #Deaths
     

@@ -2,9 +2,10 @@ library(dplyr)
 library(deSolve)
 library(ggplot2)
 source("~/COVID_serovax/2_main_simulation/model_code_int_two.R")
-sweep<- readRDS("1_sweep_int.RDS")
-spec_humid <- read.csv("9_spec_humid.csv")[,c("day","avg_sm2")]
-start <- readRDS("9_last_Rrand.RDS")
+sweep<- readRDS("~/COVID_serovax/2_main_simulation/1_sweep_int.RDS")
+spec_humid <- read.csv("~/COVID_serovax/2_main_simulation/9_spec_humid.csv")[,c("day","avg_sm2")]
+# start <- readRDS("~/COVID_serovax/2_main_simulation/9_last_Rrand.RDS")
+start <- readRDS("~/COVID_serovax/2_main_simulation/start_two.RDS")
 trigger<-F
 sero_e1 <-rep(0,5)
 yroot1 <- rep(0,5)
@@ -353,7 +354,7 @@ model_sims <- function(i){
     
     new_Deaths_tot = Deaths_tot - lag(Deaths_tot)) %>%
     
-    select(time, Nchildr:new_Deaths_tot)
+    select(time, Nchildu:new_Deaths_tot)
   
   
   # seroprev<- model_out %>% left_join(pop_num%>%select(time,Nchildr:NTot), by= "time")%>%
@@ -442,9 +443,7 @@ model_sims <- function(i){
       s1v0_a = rowSums(select(.,  Snau1v0)),
       s1v0_e = rowSums(select(.,  Sneu1v0)),
       
-      s2v0_c = rowSums(select(., Sncu2v0)),
-      s2v0_a = rowSums(select(.,  Snau2v0)),
-      s2v0_e = rowSums(select(.,  Sneu2v0)),
+      
       
       s0v1_c = rowSums(select(., Sncu0v1)),
       s0v1_a = rowSums(select(., Snau0v1)),
@@ -468,16 +467,16 @@ model_sims <- function(i){
      
       
       sus_c = rowSums(select(., ((contains('cu'))&(contains('Sn')))|contains('Scu'))),
-      sus_a = rowSums(select(., ((contains('au'))&(contains('Sp')|contains('Sn')))|contains('Sau'))),
-      sus_e = rowSums(select(., ((contains('eu'))&(contains('Sp')|contains('Sn')))|contains('Seu'))),
+      sus_a = rowSums(select(., ((contains('au'))&(contains('Sn')))|contains('Sau'))),
+      sus_e = rowSums(select(., ((contains('eu'))&(contains('Sn')))|contains('Seu'))),
       
-      rec_c = rowSums(select(., (contains('cu'))&(contains('Rp')|contains('Rn')))),
-      rec_a = rowSums(select(., (contains('au'))&(contains('Rp')|contains('Rn')))),
-      rec_e = rowSums(select(., (contains('eu'))&(contains('Rp')|contains('Rn')))),
+      rec_c = rowSums(select(., (contains('cu'))&(contains('Rn')))),
+      rec_a = rowSums(select(., (contains('au'))&(contains('Rn')))),
+      rec_e = rowSums(select(., (contains('eu'))&(contains('Rn')))),
       
-      vac_c = rowSums(select(., (contains('cu'))&(contains('Vp')|contains('Vn')))), 
-      vac_a = rowSums(select(., (contains('au'))&(contains('Vp')|contains('Vn')))), 
-      vac_e = rowSums(select(., (contains('eu'))&(contains('Vp')|contains('Vn'))))) %>% 
+      vac_c = rowSums(select(., (contains('cu'))&(contains('Vn')))), 
+      vac_a = rowSums(select(., (contains('au'))&(contains('Vn')))), 
+      vac_e = rowSums(select(., (contains('eu'))&(contains('Vn'))))) %>% 
     
     select(time, s0v0_c:vac_e)
   
