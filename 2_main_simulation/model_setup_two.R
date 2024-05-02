@@ -502,7 +502,8 @@ model_sims <- function(i){
               model_out=model_out,
               mod_inc=mod_inc, 
               mod_foi=mod_foi, imm_class=imm_class,
-              seroprev=seroprev, vax_elig=vax_elig,
+              #seroprev=seroprev, 
+              vax_elig=vax_elig,
               sd=sd)
   #saveRDS(res_out,paste("sw_run_",i,".RDS",sep=""))
   

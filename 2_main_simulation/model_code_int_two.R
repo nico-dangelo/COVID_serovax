@@ -1381,11 +1381,14 @@ COVID_sero_vax <- function(t, start, params) {
       'foi_eu_2v2' = foi_eu_2v2,
       
       
-      'delta1_cu' = delta1_cu
-      
-      
-      
-      
+      'delta1_cu' = delta1_cu,
+      'delta1_au' = delta1_au,
+      'delta1_eu' = delta1_eu, 
+      'delta2_cu' = delta2_cu, 
+      'delta2_au' = delta2_au, 
+      'delta2_eu' = delta2_eu 
+    
+    
     )
     
     #cat("Time=", t, "foi_eu_1v3=", foi_eu_1v3, "foi_au_1v3=", foi_au_1v3, "foi_cu_2v0=",foi_cu_2v0,"\n")
