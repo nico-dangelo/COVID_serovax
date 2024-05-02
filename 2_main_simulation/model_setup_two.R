@@ -490,7 +490,7 @@ model_sims <- function(i){
            vax_elig_a =  vax_elig_au)%>%
     select(time, vax_elig_eu :vax_elig_a) %>%
     
-    left_join(model_out %>% select(time, delta1_cr:delta3_eu))
+    left_join(model_out %>% select(time, delta1_cu))
     
     sd<-model_out$sd
   
@@ -499,7 +499,7 @@ model_sims <- function(i){
   print(paste(i, "iteration complete"))
   
   res_out <- list(pop_num = pop_num, start = start, params = params,
-              #model_out=model_out,
+              model_out=model_out,
               mod_inc=mod_inc, 
               mod_foi=mod_foi, imm_class=imm_class,
               seroprev=seroprev, vax_elig=vax_elig,
