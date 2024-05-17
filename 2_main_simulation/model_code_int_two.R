@@ -181,12 +181,12 @@ COVID_sero_vax <- function(t, start, params) {
     
     ## Vax values (0 unless triggered)
     
-    delta1_cu <- 0
-    delta1_au <- 0
-    delta1_eu <- 0
-    delta2_cu <- 0
-    delta2_au <- 0
-    delta2_eu <- 0
+    delta1_cu <- 0.01
+    delta1_au <- 0.01
+    delta1_eu <- 0.01
+    delta2_cu <- 1/21
+    delta2_au <- 1/21
+    delta2_eu <- 1/21
     
     
     ##Social distancing stuff
@@ -952,7 +952,7 @@ COVID_sero_vax <- function(t, start, params) {
     
     vswitch = 1 #switch for switching off the vaccination
     
-    delta1_cu = 0
+    #delta1_cu = 0
     
     
     
