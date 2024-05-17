@@ -1,4 +1,4 @@
-vars_d<-str_split_1("dScu0v0,
+vars_d<-stringr::str_split_1("dScu0v0,
 
 dSau0v0,
 
@@ -320,19 +320,7 @@ dIcum2v2_cu,
 
 dIcum2v2_au,
 
-dIcum2v2_eu,
-
-dVncu0v1,
-
-dVnau0v1,
-
-dVneu0v1,
-
-dVncu0v2,
-
-dVnau0v2,
-
-dVneu0v2"
+dIcum2v2_eu"
 , pattern=",\n\n"
 
 
@@ -340,4 +328,4 @@ dVneu0v2"
 vars <- gsub("d","",vars_d)
 start <- readRDS("~/COVID_serovax/2_main_simulation/9_last_Rrand.RDS")
 start <- subset(start, select=vars)
-saveRDS(start,file="~/start_two.RDS")
+saveRDS(start,file="~/COVID_serovax/2_main_simulation/start_two.RDS")

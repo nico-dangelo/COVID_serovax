@@ -254,7 +254,7 @@ model_sims <- function(i){
 
   params<-c('beta_c'= beta_c, 'beta_a' = beta_a, 'beta_e' = beta_e,
             'alpha' = alpha, 
-            'epsilon_1'=epsilon_1, 'epsilon_2'=epsilon_2,  'zeta_1'=zeta1, 'zeta_2'=zeta_2, 
+            'epsilon_1'=epsilon_1, 'epsilon_2'=epsilon_2,  'zeta_1'=zeta_1, 'zeta_2'=zeta_2, 
             'theta' = theta,
             'gamma_I'=gamma_I, 'gamma_A'=gamma_A, 'gamma_H'=gamma_H,
             'kappa_c'=kappa_c, 'kappa_a'=kappa_a, 'kappa_e'=kappa_e,
@@ -485,7 +485,7 @@ model_sims <- function(i){
     
     left_join(model_out %>% select(time, delta1_cu))
     
-    sd<-model_out$sd
+    #sd<-model_out$sd
   
   model_out$sweepnum <- i
   # model_summary$sweepnum <- i
@@ -496,8 +496,8 @@ model_sims <- function(i){
               mod_inc=mod_inc, 
               mod_foi=mod_foi, imm_class=imm_class,
               #seroprev=seroprev, 
-              vax_elig=vax_elig,
-              sd=sd)
+              vax_elig=vax_elig
+             )
   #saveRDS(res_out,paste("sw_run_",i,".RDS",sep=""))
   
   num <- if(nchar(i)==1){paste("000",i,sep="")} else if(nchar(i)==2){paste("00",i,sep="")}else if(nchar(i)==3){paste("0",i,sep="")}else{paste(i)}
