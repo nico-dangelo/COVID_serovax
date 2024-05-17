@@ -116,10 +116,10 @@ model_sims <- function(i){
   #mu_a <-0
   #mu_e <-0
   ## Vaccine parameters
-  vei1<-0.50 ## VE against infection
-  vep1<-0.40 ## VE against hospitalization
-  vei2<-0.60 ## VE against infection
-  vep2<-0.67 ## VE against hospitalization
+  epsilon_1<-0.50 ## VE against infection
+  zeta_1<-0.40 ## VE against hospitalization
+  epsilon_2<-0.60 ## VE against infection
+  zeta_2<-0.67 ## VE against hospitalization
   
   # vei3<-0.7 ## VE against infection
   # vep3<-0.9 ## VE against hospitalization
@@ -129,27 +129,27 @@ model_sims <- function(i){
   
   
   ##Natural history parameters
-  sigma <- 1/5.5  #latent period
+  theta <- 1/5.5  #latent period
   
   gamma_I <-1/7      #duration of infection for symptomatically infectious
   gamma_A <-1/7      #duration of infection for asymptomatically infectious
   gamma_H <-1/5      #hospital length of stay
   
-  nu_c<- 0.45         #Probability of symptomatic infection for children
-  nu_a<- 0.55         #Probability of symptomatic infection for adults
-  nu_e<- 0.65         #Probability of symptomatic infection for elderly
+  kappa_c<- 0.45         #Probability of symptomatic infection for children
+  kappa_a<- 0.55         #Probability of symptomatic infection for adults
+  kappa_e<- 0.65         #Probability of symptomatic infection for elderly
   
   phi_c<- 0.004     #Prob of hospitalization (children) among unvaxed
   phi_a<- 0.03       #Prob of hospitalization (adults) among unvaxed
   phi_e<- 0.2       #Prob of hospitalization (elderly) among unvaxed
   
-  phi_cv1 <- phi_c*(1-vep1)
-  phi_av1 <- phi_a*(1-vep1)
-  phi_ev1 <- phi_e*(1-vep1)
+  phi_cv1 <- phi_c*(1-zeta_1)
+  phi_av1 <- phi_a*(1-zeta_1)
+  phi_ev1 <- phi_e*(1-zeta_1)
   
-  phi_cv2 <- phi_c*(1-vep2)
-  phi_av2 <- phi_a*(1-vep2)
-  phi_ev2 <- phi_e*(1-vep2)
+  phi_cv2 <- phi_c*(1-zeta_2)
+  phi_av2 <- phi_a*(1-zeta_2)
+  phi_ev2 <- phi_e*(1-zeta_2)
   
   # phi_cv3 <- phi_c*(1-vep3)
   # phi_av3 <- phi_a*(1-vep3)
@@ -237,14 +237,7 @@ model_sims <- function(i){
   # rho_v1 <- 0.85
   # rho_v2 <- 0.6 ## Among those seronegative after first dose
   # rho_v3 <-0.9  ##Among those seronegative after second dose, or waned
-  ##Seroreversion
-  #kappa_c <- 1/250
-  #kappa_a <- 1/250
-  #kappa_e <- 1/250
-  
-  # kappa1 <- sweep$kappa1[i]
-  # kappa2 <- sweep$kappa2[i]
-  # kappa3 <- sweep$kappa3[i]
+
   # 
   # sero_thresh <- sweep$sero_thresh[i]
   # 
@@ -258,13 +251,13 @@ model_sims <- function(i){
   
   beta1<-sweep$beta1[i]
   w <- sweep$w[i]
-  #kappa_vax <-1/250
+
   params<-c('beta_c'= beta_c, 'beta_a' = beta_a, 'beta_e' = beta_e,
             'alpha' = alpha, 
-            'vei1'=vei1, 'vei2'=vei2,  'vep1'=vep1, 'vep2'=vep2, 
-            'sigma' = sigma,
+            'epsilon_1'=epsilon_1, 'epsilon_2'=epsilon_2,  'zeta_1'=zeta1, 'zeta_2'=zeta_2, 
+            'theta' = theta,
             'gamma_I'=gamma_I, 'gamma_A'=gamma_A, 'gamma_H'=gamma_H,
-            'nu_c'=nu_c, 'nu_a'=nu_a, 'nu_e'=nu_e,
+            'kappa_c'=kappa_c, 'kappa_a'=kappa_a, 'kappa_e'=kappa_e,
             'phi_c'=phi_c, 'phi_a'=phi_a, 'phi_e'=phi_e,
             'phi_cv1'=phi_cv1, 'phi_av1'=phi_av1, 'phi_ev1'=phi_ev1,
             'phi_cv2'=phi_cv2, 'phi_av2'=phi_av2, 'phi_ev2'=phi_ev2,
