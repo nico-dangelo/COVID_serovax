@@ -34,15 +34,15 @@ getr0 <- function(bl,rel_c,rel_a,rel_e){
   # CM_ur <- p_ur*CM_u
   
   # CM <- cbind(rbind(CM_rr, CM_ur), rbind(CM_ru,CM_uu))
-  colnames(CM) <- c("sus_u_0_17","sus_u_18_49","sus_u_50")
-  rownames(CM) <- c("inf_u_0_17","inf_u_18_49","inf_u_50")
+  colnames(CM) <- c("sus_u_0_19","sus_u_20_64","sus_u_65")
+  rownames(CM) <- c("inf_u_0_19","inf_u_20_64","inf_u_65")
   
   ##population
-  start.Ns <- c(4900719, 992149, 446454)
+  start.Ns <- c(2808333,6460268,1644275)
   
   pop_dist = data.frame(age_ur = c("cu","au","eu"),
                         pop = start.Ns,
-                        sus_pop = c("sus_u_0_17","sus_u_18_49","sus_u_50"))
+                        sus_pop = c("sus_u_0_19","sus_u_20_64","sus_u_65"))
   
   alpha <- 0.6
   kappa_c<- 0.45         #Probability of symptomatic infection for children
@@ -61,12 +61,12 @@ getr0 <- function(bl,rel_c,rel_a,rel_e){
   beta_a <- bl*rel_a    
   beta_e <- bl*rel_e    
   ## vector of infectiousness
-  v_sus<- data.frame(var = c("sus_u_0_17","sus_u_18_49","sus_u_50"),
+  v_sus<- data.frame(var = c("sus_u_0_19","sus_u_20_64","sus_u_65"),
                      beta = c(beta_c, beta_a, beta_e))
   v_inf<- data.frame(inf = row.names(CM),
                      prop_infector = c(prop_inf_c,prop_inf_a,prop_inf_e))
   
-  ngm <- as.data.frame(CM)%>% mutate(inf=row.names(.))%>%tidyr::pivot_longer(cols=sus_u_0_17:sus_u_50, names_to = "sus") %>%
+  ngm <- as.data.frame(CM)%>% mutate(inf=row.names(.))%>%tidyr::pivot_longer(cols=sus_u_0_19:sus_u_65, names_to = "sus") %>%
     left_join(v_sus, by = c("sus"="var")) %>%
     left_join(v_inf, by= c("inf"="inf")) %>%
     left_join(pop_dist %>% select(sus_pop,pop), by = c("sus"="sus_pop"))%>%
