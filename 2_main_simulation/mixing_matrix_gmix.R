@@ -69,7 +69,7 @@ CM<-CM_u
 # rownames(CM) <-c("Rural 0-17","Rural 18-49","Rural 50+","Urban 0-17","Urban 18-49","Urban 50+")
 # colnames(CM) <- c("Urban 0-17","Urban 18-49","Urban 50+")
 # rownames(CM) <-c("Urban 0-17","Urban 18-49","Urban 50+")
-
+rm(CM_u)
 ##Visualize the matrix
 # library(ggplot2)
 # theme<-theme_classic()+
