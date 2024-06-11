@@ -79,7 +79,7 @@ getr0 <- function(bl,rel_c,rel_a,rel_e){
   print(eigen)
 }
 
-getr0(0.07476, 0.35939,0.47748,1) ##R0 = 2.1136
+getr0(0.00775, 0.35581,0.48272,1) ##R0 = 2.113207
 
 ## Loop through a bunch of parameter values and find the corresponding R0 value
 ## Use Latin hypercube sampling over a uniform distribution over plausible values
@@ -90,7 +90,7 @@ l <- randomLHS(total.set.size, 3)
 
 relbeta_c_parms<- c(0.35,0.39) # relative infectiousness of children compared to older adults
 relbeta_a_parms<- c(0.40,0.53) # relative infectiousness of adults compared to older adults
-bl_parms <- c(0.071,0.077)     # beta for older adults
+bl_parms <- c(0.005,0.02)     # beta for older adults
 
 relbeta_c <- round((l[,1]*(relbeta_c_parms[2]-relbeta_c_parms[1]))+relbeta_c_parms[1],5)
 relbeta_a <- round((l[,2]*(relbeta_a_parms[2]-relbeta_a_parms[1]))+relbeta_a_parms[1],5)
@@ -102,3 +102,4 @@ sweep <- data.frame(relbeta_c=relbeta_c,relbeta_a=relbeta_a, bl=bl)
 for(i in 1:nrow(sweep)){
   sweep$r0[i]<-getr0(bl=sweep$bl[i],rel_c = sweep$relbeta_c[i],rel_a = sweep$relbeta_a[i],rel_e=1)
 }
+

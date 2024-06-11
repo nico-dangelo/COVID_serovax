@@ -372,13 +372,13 @@ COVID_sero_vax <- function(t, start, params) {
     
     #Exposed
     
-    dEcu1v0  =  Scu0v0 *  foi_cu_0v0 -  theta * Ecu1v0  - delta1_cu *
+    dEcu1v0  =  Scu0v0 *  foi_cu_0v0 -  kappa_c * theta * Ecu1v0  - delta1_cu *
       Ecu1v0
     
-    dEau1v0  =  Sau0v0 *  foi_au_0v0 -  theta * Eau1v0  - delta1_au *
+    dEau1v0  =  Sau0v0 *  foi_au_0v0 -  kappa_a * theta * Eau1v0  - delta1_au *
       Eau1v0
     
-    dEeu1v0  =  Seu0v0 *  foi_eu_0v0 -  theta * Eeu1v0  - delta1_eu *
+    dEeu1v0  =  Seu0v0 *  foi_eu_0v0 -  kappa_e * theta * Eeu1v0  - delta1_eu *
       Eeu1v0
     
     # Asymptomatic
@@ -516,7 +516,7 @@ COVID_sero_vax <- function(t, start, params) {
     
     # Susceptible and seronegative for S-spike and total IGg
     
-    dSncu0v1  = omegav_nc * Sncu0v2 - Sncu0v *  foi_cu_0v1 -  delta2_cu * Sncu0v1
+    dSncu0v1  = omegav_nc * Sncu0v2 - Sncu0v1 *  foi_cu_0v1 -  delta2_cu * Sncu0v1
     
     dSnau0v1  = omegav_na * Snau0v2 - Snau0v1 *  foi_au_0v1 -  delta2_au * Snau0v1
     
