@@ -48,7 +48,7 @@ model_sims <- function(i){
                        #r0_hyp = rep(0,length(times)),
                        r0t = rep(0, length(tt2)))
   
-  signal<- merge(signal, spec_humid, by.x="day", by.y="day")
+  # signal<- merge(signal, spec_humid, by.x="day", by.y="day")
   
   r0hyp_list <- data.frame(yr = seq(from=0, to=10, by=1),
                            r0_hyp = c(r00,r01,r02,r03,r04,r05,r06,r07,r08,r09,r09))
@@ -60,7 +60,7 @@ model_sims <- function(i){
   r0min<-sweep$r0_base[i]
   #signal$r0t= exp(-227.5*signal$avg_sm2 + log(signal$r0_hyp-r0min))+r0min
   #signal$r0t= exp(-227.5*signal$avg_sm2 + log((signal$r0_hyp)+4-r0min))+r0min
-  signal$r0t= exp(fac1*signal$avg_sm2 + log(signal$r0_hyp*fac2-r0min*0.85))+r0min
+  # signal$r0t= exp(fac1*signal$avg_sm2 + log(signal$r0_hyp*fac2-r0min*0.85))+r0min
   signal$import <- signal$r0t/sweep$r0[i]
   
   signal <-signal[,c("t","import")]
