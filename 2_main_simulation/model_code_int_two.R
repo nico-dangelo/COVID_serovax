@@ -7,7 +7,7 @@ source("~/COVID_serovax/2_main_simulation/mixing_matrix_gmix.R")
 ## The subscripts denote the number of times someone as been exposed through either infection or vaccination
 COVID_sero_vax <- function(t, start, params) {
   with(as.list(c(start, params)), {
-    sd <- input(t)
+    # sd <- input(t)
     # Derived variables
     
     
@@ -30,11 +30,11 @@ COVID_sero_vax <- function(t, start, params) {
     Nau1v0 = sum(Snau1v0, Eau2v0, Aau2v0, Iau2v0, Hau2v0, Rnau2v0) #Unvax and one prior
     
     
-    Nau0v1 = sum(#Vnau0v1,
+    Nau0v1 = sum(
       Snau0v1, Eau1v1, Aau1v1, Iau1v1, Hau1v1, Rnau1v1) #vax 1 dose and no prior exposure
     Nau1v1 = sum(Snau1v1, Eau2v1, Aau2v1, Iau2v1, Hau2v1, Rnau2v1) #vax 1 dose and one prior
     
-    Nau0v2 = sum(#Vnau0v2,
+    Nau0v2 = sum(
       Snau0v2, Eau1v2, Aau1v2, Iau1v2, Hau1v2, Rnau1v2) #vax 2 dose and no prior exposure
     Nau1v2 = sum(Snau1v2, Eau2v2, Aau2v2, Iau2v2, Hau2v2, Rnau2v2) #vax 2 dose and one prior
     
@@ -49,11 +49,11 @@ COVID_sero_vax <- function(t, start, params) {
     Neu1v0 = sum(Sneu1v0, Eeu2v0, Aeu2v0, Ieu2v0, Heu2v0, Rneu2v0) #Unvax and one prior
     
     
-    Neu0v1 = sum(#Vneu0v1,
+    Neu0v1 = sum(
       Sneu0v1, Eeu1v1, Aeu1v1, Ieu1v1, Heu1v1, Rneu1v1) #vax 1 dose and no prior exposure
     Neu1v1 = sum(Sneu1v1, Eeu2v1, Aeu2v1, Ieu2v1, Heu2v1, Rneu2v1) #vax 1 dose and one prior
     
-    Neu0v2 = sum(#Vneu0v2,
+    Neu0v2 = sum(
       Sneu0v2, Eeu1v2, Aeu1v2, Ieu1v2, Heu1v2, Rneu1v2) #vax 2 dose and no prior exposure
     Neu1v2 = sum(Sneu1v2, Eeu2v2, Aeu2v2, Ieu2v2, Heu2v2, Rneu2v2) #vax 2 dose and one prior
     
@@ -77,58 +77,7 @@ COVID_sero_vax <- function(t, start, params) {
     delta2_eu <- 1 / 21
     
     
-    ##Social distancing stuff
-    #create the seasonality parameter
-    #years = t/365
-    #seas  = 1 + beta1 *(cos(2*3.141593*years + 1))      #seasonal forcing
-    
-    ##r0_hyp <- r00
-    #sd <- (r0_hyp)/r0
-    
-    #if ((t/365)%%1>(270/365)){
-    #yr<-floor(years)
-    #  if(yr==0){
-    #    r0_hyp <- r00
-    #  } else if(yr==1){
-    #    r0_hyp <- r01
-    #  } else if(yr==2){
-    #    r0_hyp <- r02
-    #  } else if(yr==3){
-    #    r0_hyp <- r03
-    #  } else if(yr==4){
-    #    r0_hyp <- r04
-    #  } else if(yr==5){
-    #    r0_hyp <- r05
-    #  } else if(yr==6){
-    #    r0_hyp <- r06
-    #  } else if (yr==7){
-    #    r0_hyp <- r07
-    #  } else if (yr==8){
-    #    r0_hyp <- r08
-    #  } else {
-    #    r0_hyp <- r09
-    #  }
-    #sd <- ((r0_hyp)/r0)*seas
-    #} else {
-    #  sd <- 1.8/r0
-    #}
-    
-    #if(t<=100){
-    #  sd <- sd2
-    #} else if(t<=320){
-    #  sd <- rel_newvar
-    #} else {
-    #  sd <- rel_newvar ##keep on for now and see what happens
-    #}
-    
-    ### imunne escape factor for those with either prior exposure or prior vaccination
-    #if (t <= 100){
-    #imm_esc_factor <- imm_esc_factor_omi
-    #} else {
-    #  imm_esc_factor <- imm_esc_factor_newvar
-    #}
-    
-    
+   
     
     
     
@@ -801,36 +750,7 @@ COVID_sero_vax <- function(t, start, params) {
     
     
     
-    
-    ##Classes of temporary immunity from those who were vaccinated
-    ## First dose
-    
-    
-    ## First dose and seronegative
-    
-    # dVncu0v1 = delta1_cu * Scu0v0  - delta2_cu * Vncu0v1 - omegav_nc *
-    #   Vncu0v1
-    #
-    # dVnau0v1 =  delta1_au * Sau0v0 - delta2_au * Vnau0v1 - omegav_na *
-    #   Vnau0v1
-    #
-    # dVneu0v1 = delta1_eu * Seu0v0  - delta2_eu * Vneu0v1 - omegav_ne *
-    #   Vneu0v1
-    #
-    # ##Second dose
-    #
-    #
-    # ##Seronegative
-    #
-    # dVncu0v2 = delta2_cu * Sncu0v1 + delta2_cu * Vncu0v1  - omegav_nc *
-    #   Vncu0v2
-    #
-    # dVnau0v2 = delta2_au * Snau0v1 + delta2_au * Vnau0v1   - omegav_na *
-    #   Vnau0v2
-    #
-    # dVneu0v2 = delta2_eu * Sneu0v1 + delta2_eu * Vneu0v1 - omegav_ne *
-    #   Vneu0v2
-    
+   
     
     
     
@@ -1280,6 +1200,7 @@ COVID_sero_vax <- function(t, start, params) {
     )
     
     #cat("Time=", t, "foi_eu_1v3=", foi_eu_1v3, "foi_au_1v3=", foi_au_1v3, "foi_cu_2v0=",foi_cu_2v0,"\n")
-    list(res, time_varying_pars, sd = sd)
+    list(res, time_varying_pars) 
+         # sd = sd)
   }) #closing brackets for as.list(parames) loop
 }# closing bracket for function
