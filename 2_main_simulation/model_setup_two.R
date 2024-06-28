@@ -2,8 +2,8 @@ library(dplyr)
 library(deSolve)
 library(ggplot2)
 source("~/COVID_serovax/2_main_simulation/model_code_int_two.R")
-sweep<- readRDS("~/COVID_serovax/2_main_simulation/1_sweep_int.RDS")
-spec_humid <- read.csv("~/COVID_serovax/2_main_simulation/9_spec_humid.csv")[,c("day","avg_sm2")]
+sweep<- readRDS("~/COVID_serovax/2_main_simulation/sweep_two.RDS")
+# spec_humid <- read.csv("~/COVID_serovax/2_main_simulation/9_spec_humid.csv")[,c("day","avg_sm2")]
 # start <- readRDS("~/COVID_serovax/2_main_simulation/9_last_Rrand.RDS")
 start <- readRDS("~/COVID_serovax/2_main_simulation/start_two.RDS")
 trigger<-F
@@ -21,55 +21,55 @@ model_sims <- function(i){
   
   print(paste(Sys.time(),"iteration start", i, sep=" "))
   ##Future pandemic
-  inc_trans<-sweep$inc_trans[i]
-  r00<- sweep$r00[i]*inc_trans^0
-  r01<- sweep$r01[i]*inc_trans^0
-  r02<- sweep$r02[i]*inc_trans^1
-  r03<- sweep$r03[i]*inc_trans^2
-  r04<- sweep$r04[i]*inc_trans^3
-  r05<- sweep$r05[i]*inc_trans^4
-  r06<- sweep$r06[i]*inc_trans^5
-  r07<- sweep$r07[i]*inc_trans^6
-  r08<- sweep$r08[i]*inc_trans^6
-  r09<- sweep$r09[i]*inc_trans^6
+  # inc_trans<-sweep$inc_trans[i]
+  # r00<- sweep$r00[i]*inc_trans^0
+  # r01<- sweep$r01[i]*inc_trans^0
+  # r02<- sweep$r02[i]*inc_trans^1
+  # r03<- sweep$r03[i]*inc_trans^2
+  # r04<- sweep$r04[i]*inc_trans^3
+  # r05<- sweep$r05[i]*inc_trans^4
+  # r06<- sweep$r06[i]*inc_trans^5
+  # r07<- sweep$r07[i]*inc_trans^6
+  # r08<- sweep$r08[i]*inc_trans^6
+  # r09<- sweep$r09[i]*inc_trans^6
   
-  fac1 <- sweep$fac1[i]
-  fac2 <- sweep$fac2[i]
-  
+  # fac1 <- sweep$fac1[i]
+  # fac2 <- sweep$fac2[i]
+  # 
   total_time=3650           
   t = seq(0,total_time,1)
   
   tt=3650
   tt2= seq(0,tt,1)
-  signal <- data.frame(t = tt2, 
-                       yr = floor(tt2/365),
-                       day = c(rep(c(seq(from=0, to=364, by=1)),times=10),364),
-                       fac = rep(0, length(tt2)),
+  # signal <- data.frame(t = tt2, 
+                       # yr = floor(tt2/365),
+                       # day = c(rep(c(seq(from=0, to=364, by=1)),times=10),364),
+                       # fac = rep(0, length(tt2)),
                        #r0_hyp = rep(0,length(times)),
-                       r0t = rep(0, length(tt2)))
+                       # r0t = rep(0, length(tt2)))
   
   # signal<- merge(signal, spec_humid, by.x="day", by.y="day")
   
-  r0hyp_list <- data.frame(yr = seq(from=0, to=10, by=1),
-                           r0_hyp = c(r00,r01,r02,r03,r04,r05,r06,r07,r08,r09,r09))
+  # r0hyp_list <- data.frame(yr = seq(from=0, to=10, by=1),
+                           # r0_hyp = c(r00,r01,r02,r03,r04,r05,r06,r07,r08,r09,r09))
 
-  
-  signal<- merge(signal,r0hyp_list, by.x= "yr", by.y = "yr")
-  signal <- signal[order(signal$t),]
-  
-  r0min<-sweep$r0_base[i]
-  #signal$r0t= exp(-227.5*signal$avg_sm2 + log(signal$r0_hyp-r0min))+r0min
-  #signal$r0t= exp(-227.5*signal$avg_sm2 + log((signal$r0_hyp)+4-r0min))+r0min
-  # signal$r0t= exp(fac1*signal$avg_sm2 + log(signal$r0_hyp*fac2-r0min*0.85))+r0min
-  signal$import <- signal$r0t/sweep$r0[i]
-  
-  signal <-signal[,c("t","import")]
+  # 
+  # signal<- merge(signal,r0hyp_list, by.x= "yr", by.y = "yr")
+  # signal <- signal[order(signal$t),]
+  # 
+  # r0min<-sweep$r0_base[i]
+  # #signal$r0t= exp(-227.5*signal$avg_sm2 + log(signal$r0_hyp-r0min))+r0min
+  # #signal$r0t= exp(-227.5*signal$avg_sm2 + log((signal$r0_hyp)+4-r0min))+r0min
+  # # signal$r0t= exp(fac1*signal$avg_sm2 + log(signal$r0_hyp*fac2-r0min*0.85))+r0min
+  # signal$import <- signal$r0t/sweep$r0[i]
+  # 
+  # signal <-signal[,c("t","import")]
   
   #signal%>%
   #  ggplot(aes(x=t, y=r0t))+
   #  geom_line(aes(x=t,y=r0t))
   
-  input <<- approxfun(signal, rule = 2)
+  # input <<- approxfun(signal, rule = 2)
   
   trigger <<-F
 
@@ -98,7 +98,7 @@ model_sims <- function(i){
   beta_a <- bl*rel_a    ##Guesses
   beta_e <- bl*1    ##Guesses
   r0 <- sweep$r0[i]
-  r0_hyp <- sweep$r0_hyp[i]
+  # r0_hyp <- sweep$r0_hyp[i]
  # inc_trans<-sweep$inc_trans[i]
   
   ##alpha is relative infectiousness of asymptomatic
@@ -271,9 +271,9 @@ model_sims <- function(i){
             
             
             
-            'r0'=r0, 'r0_hyp'=r0_hyp, 'inc_trans'=inc_trans,
+            # 'r0'=r0, 'r0_hyp'=r0_hyp, 'inc_trans'=inc_trans,
             
-            'r00'=r00, 'r01'=r01, 'r02'=r02, 'r03'=r03, 'r04'=r04, 'r05'=r05, 'r06'=r06, 'r07'=r07,'r08'=r08, 'r09'=r09,
+            # 'r00'=r00,  'r01'=r01, 'r02'=r02, 'r03'=r03, 'r04'=r04, 'r05'=r05, 'r06'=r06, 'r07'=r07,'r08'=r08, 'r09'=r09,
             
              'beta1'=beta1, 'w'=w,
             
