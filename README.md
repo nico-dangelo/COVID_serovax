@@ -11,8 +11,7 @@ Code for the main modeling work and analysis can be found in [main_simulation](h
 | [model_setup_two](2_main_simulation/model_setup_two.R)         |Setup model without seroprevalence vax trigger |Fixed-interval model sims|
 | [1d_model_code_int](2_main_simulation/model_code_int_two.R)      | Model code function with fixed time vax|Fixed-interval model sims|
 | [2_compile_res_hpc](2_main_simulation/2_compile_res_hpc.R)      | Takes raw outputs from simulations and summarizes cumulative outcomes over 10-years|Compile results &summarise| stored in  [0_res](2_main_simulation/0_res)
-| [2_compile_annual_hpc](2_main_simulation/2_compile_annual_hpc.R)      | Takes raw outputs from simulations and summarizes for annual NNT
-| [9_last_Rrand](2_main_simulation/9_last_Rrand.RDS)      | Distribution of compartments at end of calibration|Model input|
+| [9_last_Rrand](2_main_simulation/start_two.RDS)      | Distribution of compartments at end of calibration|Model input|
 | [mixing_matrix_gmix](2_main_simulation/mixing_matrix_gmix.R)      | Social mixing matrix input|Model input|
 
 
