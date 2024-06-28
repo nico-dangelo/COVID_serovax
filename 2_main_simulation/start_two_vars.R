@@ -1,3 +1,4 @@
+library(tidyverse)
 vars_d<-stringr::str_split_1("dScu0v0,
 
 dSau0v0,
@@ -328,4 +329,35 @@ dIcum2v2_eu"
 vars <- gsub("d","",vars_d)
 start <- readRDS("~/COVID_serovax/2_main_simulation/9_last_Rrand.RDS")
 start <- subset(start, select=vars)
+#read in averaged case data 
+
+avg_cases <- readxl::read_xlsx("Georgia Average Daily COVID-19 Cases December 2020.xlsx", sheet = "Age Stratified")
+#Correct date type
+avg_cases$Date <- as.Date(avg_cases$Date)
+#GA Age distribution
+start_Ns <- c(2808333,6460268,1644275)
+#Start from first day of vaccinations in GA
+vax_start_date <- "2020-12-13"
+avg_cases_vax <- subset(avg_cases,Date==vax_start_date) |> select(!Date)
+#Initialize compartments
+colnames (avg_cases_vax) <- colnames(start_two |> select(starts_with("I") & contains("u1v0")))
+#Infectious and Asymptomatic
+start_two$Icu1v0 <- avg_cases_vax$Icu1v0
+start_two$Iau1v0 <- avg_cases_vax$Iau1v0
+start_two$Ieu1v0 <- avg_cases_vax$Ieu1v0
+under_report <- 3
+start_two$Acu1v0 <- start_two$Icu1v0 * under_report
+start_two$Aau1v0 <- start_two$Iau1v0 * under_report
+start_two$Aeu1v0 <- start_two$Ieu1v0 * under_report
+#Exposed, Dead, Hospitalized, and cumulative infections set to zero
+start_two <- start_two %>% mutate(.,across((starts_with("E")|starts_with("D")|starts_with("H")|starts_with("Icum")),function(x){x <-0}))
+#Multiple vaccinations and infections set to zero
+start_two <- start_two %>% mutate(.,across((contains("v1")|contains("v2")|contains("2v")),function(x){x <-0}))
+#initial immunity from serosurvey data
+sero_init_R <- c(0.1,0.2,0.08)
+start_two[,c("Rncu1v0","Rnau1v0","Rneu1v0")] <- start_Ns * sero_init_R
+# Susceptible
+start_two <- start_two %>% mutate(.,across((starts_with("Sn")&contains("1v")),function(x){x <-0}))
+start_two[,c("Scu0v0","Sau0v0","Seu0v0")] <- start_two %>% 
+  
 saveRDS(start,file="~/COVID_serovax/2_main_simulation/start_two.RDS")
